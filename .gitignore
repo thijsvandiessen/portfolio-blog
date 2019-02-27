@@ -1,0 +1,12 @@
+# node
+/node_modules
+
+# production
+/dist
+
+# certificates
+server.cert
+server.key
+
+# misc
+.DS_Store

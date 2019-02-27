@@ -1,0 +1,51 @@
+// Navigation sidebar
+
+.navigation {
+
+  z-index: 100;
+
+  &[data-nav="on"] .nav-button {
+    transform: translateX(12rem);
+  }
+
+  [data-nav-list="on"] {
+    transform: translateX(0);
+  }
+
+  [data-nav-list="off"] {
+    transform: translateX(-12rem);
+    visibility: hidden;
+  }
+
+  ul {
+    transition: transform .5s ease-in-out;
+    position: fixed;
+    height: 100%;
+    width: 12rem;
+    background-color: var(--black);
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+
+    :hover:not(.selected) {
+      background-color: rgba(40,40,40,1);
+    }
+
+  }
+
+  a {
+    color: var(--gray);
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+    margin: 0;
+  }
+
+  .selected {
+      color: white;
+      background-color: var(--dark-gray);
+  }
+}

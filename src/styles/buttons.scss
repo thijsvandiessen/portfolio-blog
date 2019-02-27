@@ -1,0 +1,62 @@
+// simple button styles
+
+@mixin button() {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  background: var(--primary);
+  color: var(--white);
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+
+  transition:
+    background 250ms ease-in-out,
+    color .2s ease,
+    transform 150ms ease;
+}
+
+.button {
+  @include button();
+}
+
+.button:focus,
+.button:hover {
+  background: var(--primary-dark);
+}
+
+.button:focus {
+  outline: 1px solid var(--white);
+  outline-offset: -1px;
+}
+
+.button:active {
+  transform: scale(0.99);
+}
+
+.nav-button {
+  @include button();
+
+  background: none;
+  color: var(--black);
+
+  position: fixed;
+  margin: 1rem;
+
+  transition: transform .5s ease-in-out;
+
+
+  // make it fancy
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  &:hover {
+    color: var(--gray);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

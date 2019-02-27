@@ -1,0 +1,43 @@
+// Form styles and general :focus accessebility styles
+
+
+form {
+
+  :focus {
+    outline: 2px;
+    outline-style: solid;
+    outline-color: var(--primary);
+    box-shadow: none;
+  }
+
+
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+
+  button,
+  input,
+  label,
+  textarea {
+    margin-top: 1rem;
+    border: none;
+  }
+
+  input,
+  textarea {
+    padding: 0.5rem;
+  }
+
+  textarea {
+    height: 10rem;
+  }
+
+  // form validation
+  .was-validated {
+    .form-control {
+      &:valid~.invalid-feedback {
+        display: none;
+      }
+    }
+  }
+}

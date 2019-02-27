@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <meta name="description" content="I am Thijs van Diessen, a creative front end developer and UX designer based in the Netherlands. Specialised in prototyping and designing and developing creative concepts and ideas.">
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#000000">
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Person",
+      "name": "Thijs van Diessen",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "The Hague University of Applied Sciences"
+      },
+      "knowsLanguage": [
+        "nl",
+        "en"
+      ],
+      "knowsAbout": [
+        "Front end develoment",
+        "Website development",
+        "Wordpress",
+        "React",
+        "Email development",
+        "Email deliverability",
+        "SEO"
+      ]
+    }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PFG9JDP');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <noscript>You need javascript to view this page</noscript>
+  <div id=root></div>
+</body>
+
+</html>

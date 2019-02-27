@@ -1,0 +1,30 @@
+.gradientHeader {
+  text-align: center;
+  background: rgb(232,232,219);
+  background: linear-gradient(90deg, rgba(232,232,219,1) 0%, rgba(178,240,235,1) 35%, rgba(179,206,240,1) 78%, rgba(225,237,217,1) 100%);
+
+  height: $tall;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  * {
+    max-width: $slender;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: $slender + 2rem) {
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
+  }
+
+  &.huge {
+    height: 90vh;
+
+    h1 {
+      font-size: 3em;
+    }
+  }
+}

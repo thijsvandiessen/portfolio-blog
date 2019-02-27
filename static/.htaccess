@@ -1,0 +1,33 @@
+####FORCEHTTPS_HEADER####
+RewriteEngine on
+#RULE:vandiessen.com
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} ^(www\.)?vandiessen.com$
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [last,R=301]
+####FORCEHTTPS_TAILER####
+
+####CUSTOM_HEADER####
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+
+# One month cache for css and js
+<filesMatch ".(css|js)$">
+Header set Cache-Control "max-age=86400, public"
+</filesMatch>
+
+####CUSTOM_TAILER####
+
+####CHARSET_HEADER####
+AddDefaultCharset utf-8
+####CHARSET_TAILER####
+
+####ERROR_HEADER####
+####ERROR_TAILER####
+
+####HOTLINK_HEADER####
+#RULE:,
+RewriteCond %{HTTP_REFERER} !^$
+RewriteRule \.(gif|jpe?g|png|bmp)$ - [F,L,NC]
+####HOTLINK_TAILER####
