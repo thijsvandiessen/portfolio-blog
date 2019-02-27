@@ -18,6 +18,7 @@ openssl req -nodes -new -x509 -keyout server.key -out server.cert
 
 ## Features
 
+- Fetches markdown content from another repository
 - Compiles scss to css
 - A css autoprefixer
 - Minifies css
