@@ -27,7 +27,7 @@ class Navigation extends Component {
           menu
         </button>
 
-        <ul data-nav-list={(this.state.isToggleOn ? 'on' : 'off')}>
+        <ul data-nav-list={(this.state.isToggleOn ? 'visible' : 'hidden')}>
           <li>
             <h2>
               <NavLink activeClassName="selected" to="/">

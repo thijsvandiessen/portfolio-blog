@@ -17,10 +17,23 @@ form {
 
   button,
   input,
+  select,
   label,
   textarea {
     margin-top: 1rem;
     border: none;
+  }
+
+  select {
+    height: 2.5rem;
+    appearance: none; // removes default arrow
+    border-radius: 0;
+    padding: .5rem;
+    background-image: url('../images/triangle.svg'); // add arrow
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - .5rem);
+    background-position-y: center;
+    background-color: white;
   }
 
   input,

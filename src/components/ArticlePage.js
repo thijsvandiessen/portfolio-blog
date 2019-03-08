@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Loading from './Loading';
 import GradientHeader from './GradientHeader';
-
+import Blog from '../utils/Blog';
 
 class ArticlePage extends Component {
 
@@ -12,48 +12,36 @@ class ArticlePage extends Component {
     this.state = {
       url: null,
       article: null,
+      error: null,
       loading: true,
     }
   }
 
   componentDidMount(){
 
-    // get the end of the url
-    let pathname = window.location.pathname.slice(13)
-
-
-    // Do we need to load this article
+    // We need to load this article if we don't have it yet
     if (!this.props.history.location.state) {
 
-      // lazyload from blog.js
-      import(/* webpackChunkName: "blog" */ "../utils/Blog")
-      .then(module => {
+      const blog = new Blog('blogArticles');
 
-        // get data from the folder named blogArticles
-        const directory = 'blogArticles'
+      blog.metadata.then(data => {
 
-        module.GetMetadata(directory)
-        .then(metadata => {
+        const pathname = window.location.pathname.slice(13);
 
-          for (let i in metadata) {
+        for (let i in data) {
+          data[i].url = data[i].name.slice(14, -3).toLowerCase()
 
-            // add a pretty url to our metadata
-            metadata[i].url = metadata[i].name.slice(14, -3).toLowerCase()
+          if (data[i].url === pathname) {
+            // we need to download this article
 
-            // check if the pathname equals to an article url
-            if (pathname === metadata[i].url) {
+            blog.getArticles(data[i]).then(article => {
+              this.setState({article: article, loading: false})
+            })
 
-              // get the aricle
-              module.GetBlogArticles(metadata[i])
-              .then(article => {
-                this.setState({article: article, loading: false})
-              })
-            } else {
-              this.setState({loading: false})
-            }
+          } else {
+            this.setState({loading: false})
           }
-
-        })
+        }
       })
       .catch(error => this.setState({error: true}))
 
@@ -61,7 +49,7 @@ class ArticlePage extends Component {
 
 
     // Get the article from the previous page
-    if (this.props.history.location.state) {
+    else if (this.props.history.location.state) {
       this.setState({
         article: this.props.history.location.state.article,
         loading: false,
@@ -75,31 +63,26 @@ class ArticlePage extends Component {
       title: 'This article does not exist',
       subTitle: 'I am sorry',
       huge: true,
-    }
+    };
 
     if (this.state.loading === true) {
-      return (<main><Loading/></main>)
+      return (<main><Loading/></main>);
     }
 
     else if (this.state.article === null) {
       return(
-        <main>
-          <GradientHeader heading={heading} />
-        </main>
-      )
+        <main><GradientHeader heading={heading} /></main>
+      );
     }
 
     else if (this.state.article !== null) {
       return (
         <main>
-          <article>
-            <ReactMarkdown source={this.state.article}/>
-          </article>
+          <article><ReactMarkdown source={this.state.article}/></article>
         </main>
-      )
+      );
     }
   }
 }
-
 
 export default ArticlePage;

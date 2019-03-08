@@ -5,7 +5,6 @@ class ContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
       email: '',
       message: '',
       isValidated: false
@@ -29,15 +28,6 @@ class ContactForm extends Component {
 
   render() {
     return (<form action="https://formspree.io/info@vandiessen.com" method="POST" id="contactForm" onSubmit={this.handleSubmit}>
-      <label htmlFor="name">Your name:</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        value={this.state.name}
-        onChange={this.handleChange.bind(this)}
-        required="required"
-        placeholder="Just your name"/>
       <label htmlFor="email">Your email address:</label>
       <input
         type="email"

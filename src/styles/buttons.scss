@@ -42,10 +42,9 @@
   color: var(--black);
 
   position: fixed;
+  right: 0;
   margin: 1rem;
-
   transition: transform .5s ease-in-out;
-
 
   // make it fancy
   font-weight: 500;

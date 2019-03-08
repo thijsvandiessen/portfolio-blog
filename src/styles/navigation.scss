@@ -2,19 +2,12 @@
 
 .navigation {
 
-  z-index: 100;
-
-  &[data-nav="on"] .nav-button {
-    transform: translateX(12rem);
-  }
-
-  [data-nav-list="on"] {
+  [data-nav-list="visible"] {
     transform: translateX(0);
   }
 
-  [data-nav-list="off"] {
+  [data-nav-list="hidden"] {
     transform: translateX(-12rem);
-    visibility: hidden;
   }
 
   ul {
@@ -29,11 +22,11 @@
 
   li {
     list-style: none;
+    margin: .5rem;
 
     :hover:not(.selected) {
       background-color: rgba(40,40,40,1);
     }
-
   }
 
   a {

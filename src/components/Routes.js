@@ -6,6 +6,8 @@ const Home = lazy(() => import(
   /* webpackChunkName: 'home' */ "./HomePage"));
 const Projects = lazy(() => import(
   /* webpackChunkName: 'projects' */ "./ProjectsPage"));
+const SoundProject = lazy(() => import(
+    /* webpackChunkName: 'soundProject' */ "./SoundProject"));
 const Blog = lazy(() => import(
   /* webpackChunkName: 'blog' */ "./BlogPage"));
 const Article = lazy(() => import(
@@ -32,6 +34,7 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/" component={LazyLoad(Home)} />
         <Route path="/projects" exact component={LazyLoad(Projects)} />
+        <Route path="/projects/:project" exact component={LazyLoad(SoundProject)} />
         <Route path="/my-writings" exact component={LazyLoad(Blog)} />
         <Route path="/my-writings/:article" component={LazyLoad(Article)} />
         <Route path="/about" component={LazyLoad(About)} />

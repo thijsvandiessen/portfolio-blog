@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import GradientHeader from './GradientHeader';
+import Projects from './Projects';
 
 
-class Projects extends Component {
+class ProjectPage extends Component {
 
   render() {
 
     const heading = {
       title: "My projects",
+      subTitle: "Some of my projects",
       button: {
-        text: 'Check out my GitHub account',
+        text: 'Or check out my GitHub account',
         link: 'https://github.com/thijsvandiessen'
       },
-      huge: true,
     }
 
     return (
       <main>
         <GradientHeader heading={heading}/>
+        <Projects/>
       </main>
     );
   }
 }
 
-export default Projects;
+export default ProjectPage;

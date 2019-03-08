@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class GradientHeader extends Component {
 
@@ -20,10 +19,14 @@ class GradientHeader extends Component {
     return (
       <header className={`gradientHeader ${heading.huge ? 'huge':''}`}>
         <h1>{heading.title}</h1>
-        <p>{heading.subTitle}</p>
+
+        {heading.subTitle && <p>{heading.subTitle}</p>}
 
         {heading.button &&
-          <a className="button" href={heading.button.link}>
+          <a className="button"
+            href={heading.button.link}
+            onClick={heading.button.toggle}
+          >
             {heading.button.text}
           </a>
         }

@@ -34,8 +34,10 @@ h2 {
 
 article, .content-container {
   max-width: $slender;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 2rem;
+  padding-bottom: 2rem;
 
   @media (max-width: $slender + 2rem) {
     margin: 0 1rem;

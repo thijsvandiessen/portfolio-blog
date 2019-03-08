@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { lazy, Suspense, Component } from 'react';
 import Loading from './Loading';
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown';
+
+import Blog from '../utils/Blog';
 
 class BlogArticles extends Component {
 
@@ -17,41 +19,27 @@ class BlogArticles extends Component {
 
   componentDidMount() {
 
-    // lazyload articles from blog.js
-    import(/* webpackChunkName: "blog" */ "../utils/Blog")
-    .then(module => {
+    // new blog object that gets articles from the folder blogArticles
+    const blog = new Blog('blogArticles');
 
-      // get data from the folder named blogArticles
-      const directory = 'blogArticles'
+    blog.metadata.then(data => {
 
-      module.GetMetadata(directory)
-      .then(metadata => {
+      blog.getArticles(data)
+        .then(articles => {
 
-        // get the correct blogarticles
-        module.GetBlogArticles(metadata)
-        .then(article => {
+          for (let i in data) {
+            data[i].article = articles[i];
 
-          for (let i in metadata) {
+            // add a pretty url to the metadata
+            data[i].url = window.location.pathname + data[i].name.slice(13, -3).toLowerCase();
+          };
 
-            // add article to metadata
-            metadata[i].article = article[i]
+        this.setState({ blog: data, loading: false });
 
-            // add pretty url to metadata
-            metadata[i].url = window.location.pathname + metadata[i].name.slice(13, -3).toLowerCase()
-
-          }
-
-          this.setState({ blog: metadata, loading: false })
-
-        })
       })
     })
-    .catch(error => this.setState({error: true}))
-
-
-
-
-  }
+    .catch(error => this.setState({error: error}));
+  };
 
   render() {
 
