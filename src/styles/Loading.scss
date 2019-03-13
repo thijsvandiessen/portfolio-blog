@@ -2,6 +2,11 @@
 .spinner {
   animation: rotate 3s linear infinite;
 
+  width: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
   .path {
     stroke: #a1a1a1;
     stroke-linecap: round;

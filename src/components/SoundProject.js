@@ -22,6 +22,14 @@ class SoundProject extends Component {
 
   play() {
 
+    if (!window.AudioContext) {
+      // Web Audio API is not supported
+      // Alert the user
+      alert("Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox");
+
+      return
+    }
+
     if (!this.state.sound) {
 
       // create web audio api context
@@ -48,8 +56,6 @@ class SoundProject extends Component {
       oscillator.type = this.state.waveForm;
       oscillator.frequency.value = this.state.frequency; // value in hertz
       gainNode.gain.value = 1;
-
-      console.log(oscillator)
 
       // start the node
       oscillator.start(0);
