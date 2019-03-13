@@ -29,6 +29,13 @@ class Projects extends Component {
           Read more...
         </Link>
       </div>
+      <div>
+        <h2>To do project</h2>
+        <p>How easy is it to create a to do app?</p>
+        <Link to="projects/my-to-do-app">
+          Read more...
+        </Link>
+      </div>
       </section>
     );
   }

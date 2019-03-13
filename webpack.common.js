@@ -23,6 +23,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       // inject: false,
       hash: true,
+      title: "Hi I'm Thijs van Diessen, a more creative front end developer",
       template: './src/index.html',
       filename: 'index.html',
       favicon: './src/favicon.ico',

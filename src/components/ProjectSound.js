@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GradientHeader from './GradientHeader';
 
-class SoundProject extends Component {
+class ProjectSound extends Component {
 
   constructor(props) {
     super(props)
@@ -131,4 +131,4 @@ class SoundProject extends Component {
   };
 };
 
-export default SoundProject;
+export default ProjectSound;
