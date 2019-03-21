@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import GradientHeader from './GradientHeader';
+import lazyLoad from '../utils/lazyLoad';
+import tinyImage5921 from '../images/portfolio/IMG_5921-tiny.jpg';
+import image5921 from '../images/portfolio/IMG_5921.jpeg';
 
 class AboutPage extends Component {
+
+  componentDidMount() {
+
+    // lazyload images
+    lazyLoad()
+  }
 
   render() {
 
@@ -10,9 +19,10 @@ class AboutPage extends Component {
     }
     return (
       <main>
+        <article>
         <GradientHeader heading={heading}/>
 
-        <article>
+        <div className="content-container">
           <h2>Hi, my name is Thijs</h2>
           <p>
             My skill set contains out of designing and developing user
@@ -50,6 +60,16 @@ class AboutPage extends Component {
             violin, but now I play the Double Bass. A much bigger and practical
             instrument. I play in a lot of orchestras every week where I also do some publicity related work.
           </p>
+          <p>I further like to travel, hike and take cool pictures.</p>
+          <div className="gallery">
+            <img
+              src={tinyImage5921}
+              data-src={image5921}
+              alt="Standing on a rock in the Grand Canyon at sunrise."
+              title="Casually looking into the Grand Canyon"
+            />
+          </div>
+          </div>
         </article>
       </main>
     );
