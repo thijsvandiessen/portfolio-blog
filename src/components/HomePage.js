@@ -11,7 +11,9 @@ class HomePage extends Component {
       huge: true,
     }
 
-    return (<GradientHeader heading={heading} />)
+    return (
+      <GradientHeader heading={heading} />
+    );
   }
 }
 

@@ -1,5 +1,6 @@
 ####FORCEHTTPS_HEADER####
 RewriteEngine on
+
 #RULE:vandiessen.com
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP_HOST} ^(www\.)?vandiessen.com$
@@ -8,7 +9,6 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [last,R=301]
 
 ####CUSTOM_HEADER####
 Options -MultiViews
-RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
 
@@ -16,6 +16,20 @@ RewriteRule ^ index.html [QSA,L]
 <filesMatch ".(css|js)$">
 Header set Cache-Control "max-age=86400, public"
 </filesMatch>
+
+# rewrite images to webp
+<ifModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_URI}  (?i)(.*)(\.jpe?g|\.png)$
+  RewriteCond %{DOCUMENT_ROOT}%1.webp -f
+  RewriteRule (?i)(.*)(\.jpe?g|\.png)$ %1\.webp [L,T=image/webp,R]
+</IfModule>
+
+# The content type of the document varies depending on the browser
+<IfModule mod_headers.c>
+  Header append Vary Accept env=REDIRECT_accept
+</IfModule>
 
 ####CUSTOM_TAILER####
 
@@ -31,3 +45,6 @@ AddDefaultCharset utf-8
 RewriteCond %{HTTP_REFERER} !^$
 RewriteRule \.(gif|jpe?g|png|bmp)$ - [F,L,NC]
 ####HOTLINK_TAILER####
+
+# set the MIME type of the .webp images to image/webp
+AddType image/webp .webp

@@ -6,17 +6,12 @@ const Home = lazy(() => import(
   /* webpackChunkName: 'home' */ "./HomePage"));
 const Projects = lazy(() => import(
   /* webpackChunkName: 'projects' */ "./ProjectsPage"));
-
-
 const ProjectSound = lazy(() => import(
     /* webpackChunkName: 'projectSound' */ "./ProjectSound"));
-
 const ProjectTodo = lazy(() => import(
   /* webpackChunkName: 'projectTodo' */ "./ProjectTodo"));
-
-
-
-
+const ProjectImageOptimizations = lazy(() => import(
+  /* webpackChunkName: 'ProjectImgOpt' */ "./ProjectImageOptimizations"));
 const Blog = lazy(() => import(
   /* webpackChunkName: 'blog' */ "./BlogPage"));
 const Article = lazy(() => import(
@@ -49,6 +44,8 @@ class Routes extends Component {
           component={LazyLoad(ProjectSound)} />
         <Route path="/projects/my-to-do-app" exact
           component={LazyLoad(ProjectTodo)} />
+          <Route path="/projects/image-optimizations-to-improve-seo" exact
+            component={LazyLoad(ProjectImageOptimizations)} />
         <Route path="/my-writings" exact
           component={LazyLoad(Blog)} />
         <Route path="/my-writings/:article"

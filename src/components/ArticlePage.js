@@ -78,7 +78,7 @@ class ArticlePage extends Component {
     else if (this.state.article !== null) {
       return (
         <main>
-          <article><ReactMarkdown source={this.state.article}/></article>
+          <article className="content-container"><ReactMarkdown source={this.state.article}/></article>
         </main>
       );
     }

@@ -7,7 +7,7 @@ class Footer extends Component {
     return (
       <footer>
         <p>
-          Designed and developed by <Link to="/about">Thijs van Diessen</Link>
+          Designed and developed by <Link to="/about" rel="author">Thijs van Diessen</Link>
         </p>
       </footer>
     );

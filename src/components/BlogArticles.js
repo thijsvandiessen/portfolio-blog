@@ -46,31 +46,31 @@ class BlogArticles extends Component {
     // check state and display the appropriate element
     if (this.state.error !== null ) {
       return (
-        <main>
+        <section>
           <p>Sorry, I'm not able to load my blog posts</p>
-        </main>
+        </section>
       );
     }
 
     else if (this.state.loading === true) {
       return (
-        <main><Loading/></main>
+        <section><Loading/></section>
       );
     }
 
     else if (this.state.loading === false) {
 
       return (
-        <main>
+        <section>
         {this.state.blog.map((item,idx) => (
-          <article key={idx}>
+          <article className="content-container" key={idx}>
           <ReactMarkdown source={item.article.substring(0,180) + '...'}/>
           <Link to={{pathname: item.url, state: { article: item.article },}}>
             Read more...
           </Link>
           </article>
         ))}
-        </main>
+        </section>
       );
     }
   }
