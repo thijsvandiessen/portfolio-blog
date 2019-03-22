@@ -14,15 +14,23 @@ RewriteRule ^ index.html [QSA,L]
 
 # One month cache for css and js
 <filesMatch ".(css|js)$">
-Header set Cache-Control "max-age=86400, public"
+  Header set Cache-Control "max-age=86400, public"
 </filesMatch>
 
 # rewrite images to webp
 <ifModule mod_rewrite.c>
   RewriteEngine On
+
+  # rewrite if the accept header specifies that the browser supports webp
   RewriteCond %{HTTP_ACCEPT} image/webp
-  RewriteCond %{REQUEST_URI}  (?i)(.*)(\.jpe?g|\.png)$
+
+  # rewrite only jpeg jpg and png files
+  RewriteCond %{REQUEST_URI} (?i)(.*)(\.jpe?g|\.png)$
+
+  # rewrite only if there is a webp image
   RewriteCond %{DOCUMENT_ROOT}%1.webp -f
+
+  # redirect
   RewriteRule (?i)(.*)(\.jpe?g|\.png)$ %1\.webp [L,T=image/webp,R]
 </IfModule>
 
@@ -30,6 +38,11 @@ Header set Cache-Control "max-age=86400, public"
 <IfModule mod_headers.c>
   Header append Vary Accept env=REDIRECT_accept
 </IfModule>
+
+# 2 DAYS cache for webp
+<FilesMatch "\.(webp)$">
+  Header set Cache-Control "max-age=172800, public"
+</FilesMatch>
 
 ####CUSTOM_TAILER####
 
@@ -39,12 +52,6 @@ AddDefaultCharset utf-8
 
 ####ERROR_HEADER####
 ####ERROR_TAILER####
-
-####HOTLINK_HEADER####
-#RULE:,
-RewriteCond %{HTTP_REFERER} !^$
-RewriteRule \.(gif|jpe?g|png|bmp)$ - [F,L,NC]
-####HOTLINK_TAILER####
 
 # set the MIME type of the .webp images to image/webp
 AddType image/webp .webp

@@ -16,12 +16,11 @@ class ProjectImageOptimizations extends Component {
 
   render() {
 
-
     const heading = {
       title: 'Image optimizations to improve SEO',
     };
 
-    const images = importAll(require.context('../images/portfolio/', false, /\.(jpe?g)$/));
+    const images = importAll(require.context('../images/portfolio/', false, /\.(jpg|webp)$/));
 
     function importAll(r) {
       let images = {};
@@ -35,8 +34,7 @@ class ProjectImageOptimizations extends Component {
         <GradientHeader heading={heading} />
         <div className="content-container">
 
-
-        <p>What are the SEO best practises you can perform on images? I implemented and documented here some image optimizations to improve my overall SEO performance. These optimizations are simple and also critical. For example: images do need text that describes what is in the image. There are a couple of ways that you can include text to an image. The most important one is an alt text. Furthermore, the web needs to be fast and images need to be small but do they need to be lazy loaded?</p>
+        <p>What are the SEO best practises you can perform on images? I implemented and documented here some image optimizations to improve my overall SEO performance. These optimizations are critical. For example: images do need text that describes what is in the image, otherwise they can't be found. There are a couple of ways that you can include text to an image. The most important one is an alt text. Furthermore, the web needs to be fast and images need to be small but do they need to be lazy loaded?</p>
 
         <p>I found out that it depends. Images above the fold don't need to be lazy loaded. It ruins the user experience when everything seem to be loading super slow. But images below the fold don't need to be loaded right away.</p>
 
@@ -50,39 +48,36 @@ class ProjectImageOptimizations extends Component {
 
 
           <code><pre>{`
-const lazyImageObserver = new IntersectionObserver((images) => {
-  images.forEach((image) => {
-    if (image.isIntersecting)
-      image.target.src = image.target.dataset.src;
-      lazyImageObserver.unobserve(image.target);
-    };
+if ("IntersectionObserver" in window) {
+  const imageObserver = new IntersectionObserver(images => {
+    images.filter(image => image.isIntersecting === true)
+      .map(image => {
+        const target = image.target;
+        target.src = target.dataset.src;
+        target.removeAttribute("data-src");
+        imageObserver.unobserve(target);
+      }
+    );
   });
-});
-
-lazyImages.forEach((lazyImage) => {
-  lazyImageObserver.observe(lazyImage);
-});
+  images.map(image => imageObserver.observe(image));
+}
           `}</pre>
           </code>
 
           <p>As I mentioned, this API is not supported by every browser. So I needed a fallback. With the getBoundingClientRect API you can discover when an element is in the viewport. But you have to use event listeners to scroll, resize and orientationchange. So the overall performance of the IntersectionObserver implementation is better.</p>
 
           <code><pre>{`
-// a fall back to a more compatible method
 function oldSchoolLazyLoad() {
-
-  lazyImages.forEach((lazyImage) => {
+  images.forEach((image) => {
 
     // if img is loaded return
-    if (lazyImage.src.substr(location.origin.length)
-    === lazyImage.dataset.src) {
-      return
-    };
+    if (image.src.substr(location.origin.length)
+    === image.dataset.src) return;
 
     // if the image is in the viewport, load the image
-    if (lazyImage.getBoundingClientRect().top <= window.innerHeight
-    && lazyImage.getBoundingClientRect().bottom >= 0) {
-      lazyImage.src = lazyImage.dataset.src;
+    if (image.getBoundingClientRect().top <= window.innerHeight
+    && image.getBoundingClientRect().bottom >= 0) {
+      image.src = image.dataset.src;
     }
 
   })
@@ -120,19 +115,19 @@ window.addEventListener("orientationchange", oldSchoolLazyLoad);
           <div className="gallery">
             <img
               src={images["IMG_1790-tiny.jpg"]}
-              data-src={images["IMG_1790.jpeg"]}
+              data-src={images["IMG_1790.jpg"]}
               alt="Rydal Cave, a stone quarry in the Lake District"
               title="Rydal Cave, Lake District"
             />
             <img
               src={images["IMG_2543-tiny.jpg"]}
-              data-src={images["IMG_2543.jpeg"]}
+              data-src={images["IMG_2543.jpg"]}
               alt="Buttermere and Crummock Water from the mountains"
               title="Buttermere and Crummock Water, Lake District"
             />
             <img
               src={images["IMG_4442-tiny.jpg"]}
-              data-src={images["IMG_4442.jpeg"]}
+              data-src={images["IMG_4442.jpg"]}
               alt="The lower Antelope Canyon in Arizona"
               title="Antelope Canyon in the Navajo Nation. This sandstone slot canyon is renowned for its undulating angles & light shafts."
             />
@@ -143,13 +138,13 @@ window.addEventListener("orientationchange", oldSchoolLazyLoad);
             />
             <img
               src={images["IMG_5358-tiny.jpg"]}
-              data-src={images["IMG_5358.jpeg"]}
+              data-src={images["IMG_5358.jpg"]}
               alt="A close up from a young Mule Deer at Bryce National Park"
               title="A Mule Deer at Bryce National Park"
             />
             <img
               src={images["IMG_5921-tiny.jpg"]}
-              data-src={images["IMG_5921.jpeg"]}
+              data-src={images["IMG_5921.jpg"]}
               alt="Standing on a rock in the Grand Canyon at sunrise."
               title="Casually looking into the Grand Canyon"
             />

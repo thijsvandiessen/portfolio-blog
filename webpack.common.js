@@ -57,12 +57,12 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[hash:8].[ext]',
+              name: '[name].[ext]',
               outputPath: 'assets/'
             },
           }

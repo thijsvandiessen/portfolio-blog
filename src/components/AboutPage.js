@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GradientHeader from './GradientHeader';
 import lazyLoad from '../utils/lazyLoad';
 import tinyImage5921 from '../images/portfolio/IMG_5921-tiny.jpg';
-import image5921 from '../images/portfolio/IMG_5921.jpeg';
+import image5921 from '../images/portfolio/IMG_5921.jpg';
 
 class AboutPage extends Component {
 
