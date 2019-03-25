@@ -17,18 +17,28 @@ class GradientHeader extends Component {
     const heading = this.props.heading;
 
     return (
-      <header className={`gradientHeader ${heading.huge ? 'huge':''}`}>
-        <h1>{heading.title}</h1>
-
+      <header className={`gradientHeader ${heading.huge && 'huge'}`}>
+        {heading.title && <h1>{heading.title}</h1>}
         {heading.subTitle && <p>{heading.subTitle}</p>}
 
         {heading.button &&
           <a className="button"
             href={heading.button.link}
+            title={heading.button.title}
             onClick={heading.button.toggle}
           >
             {heading.button.text}
           </a>
+        }
+
+        {heading.link &&
+          <Link className="button"
+            to={heading.link.link}
+            title={heading.link.title}
+            onClick={heading.link.toggle}
+          >
+            {heading.link.text}
+          </Link>
         }
 
       </header>

@@ -31,7 +31,7 @@ RewriteRule ^ index.html [QSA,L]
   RewriteCond %{DOCUMENT_ROOT}%1.webp -f
 
   # redirect
-  RewriteRule (?i)(.*)(\.jpe?g|\.png)$ %1\.webp [L,T=image/webp,R]
+  RewriteRule (?i)(.*)(\.jpe?g|\.png)$ %1\.webp [R=301,L,T=image/webp,R]
 </IfModule>
 
 # The content type of the document varies depending on the browser

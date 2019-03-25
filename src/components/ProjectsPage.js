@@ -9,10 +9,11 @@ class ProjectPage extends Component {
 
     const heading = {
       title: "My projects",
-      subTitle: "Some of my projects",
+      subTitle: "These are some of my projects",
       button: {
         text: 'Or check out my GitHub account',
-        link: 'https://github.com/thijsvandiessen'
+        link: 'https://github.com/thijsvandiessen',
+        title: 'Go to my Github account',
       },
     }
 

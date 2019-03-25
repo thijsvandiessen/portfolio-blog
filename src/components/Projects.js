@@ -16,14 +16,14 @@ class Projects extends Component {
           </Link>
         </div>
         <div>
-          <h2>Older portfolio</h2>
+          <h2>My older portfolio</h2>
           <p>My first portfolio with some older projects. Written in PHP.</p>
           <a href="http://thijsvandiessen.nl" title="Discover my old portfolio">
             Read more...
           </a>
         </div>
         <div>
-          <h2>Sound project</h2>
+          <h2>Making a oscillator</h2>
           <p>A simple oscillator that I use to tune my violin or double bass.
           In most orchestras 442 hertz is the A, normaly this is 440 hertz. This simply because the woodwinds like it this way. And we like it if the woodwinds are in tune.</p>
           <Link to="projects/sound-project" title="Discover my sound project">
@@ -32,7 +32,7 @@ class Projects extends Component {
         </div>
         <div>
           <h2>To do project</h2>
-          <p>How easy is it to create a to do app?</p>
+          <p>How easy is it to create a to do app in React?</p>
           <Link to="projects/my-to-do-app" title="Discover my to do app">
             Read more...
           </Link>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GradientHeader from './GradientHeader';
 import lazyLoad from '../utils/lazyLoad';
+import { Link } from 'react-router-dom'
 import tinyImage5921 from '../images/portfolio/IMG_5921-tiny.jpg';
 import image5921 from '../images/portfolio/IMG_5921.jpg';
 
@@ -61,6 +62,8 @@ class AboutPage extends Component {
             instrument. I play in a lot of orchestras every week where I also do some publicity related work.
           </p>
           <p>I further like to travel, hike and take cool pictures.</p>
+
+          <p>If you like to know more about me, <Link to="/contact" title="send me an email">get in touch</Link>.</p>
           <div className="gallery">
             <img
               src={tinyImage5921}
