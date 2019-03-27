@@ -12,37 +12,37 @@ Options -MultiViews
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
 
-# One month cache for css and js
-<filesMatch ".(css|js)$">
+# One month cache for css, js, webp
+<filesMatch ".(css|js|webp|png|jpg|jpeg)$">
   Header set Cache-Control "max-age=86400, public"
 </filesMatch>
 
-# rewrite images to webp
-<ifModule mod_rewrite.c>
-  RewriteEngine On
-
-  # rewrite if the accept header specifies that the browser supports webp
-  RewriteCond %{HTTP_ACCEPT} image/webp
-
-  # rewrite only jpeg jpg and png files
-  RewriteCond %{REQUEST_URI} (?i)(.*)(\.jpe?g|\.png)$
-
-  # rewrite only if there is a webp image
-  RewriteCond %{DOCUMENT_ROOT}%1.webp -f
-
-  # redirect
-  RewriteRule (?i)(.*)(\.jpe?g|\.png)$ %1\.webp [R=301,L,T=image/webp,R]
-</IfModule>
+# # rewrite images to webp
+# <ifModule mod_rewrite.c>
+#   RewriteEngine On
+#
+#   # rewrite if the accept header specifies that the browser supports webp
+#   RewriteCond %{HTTP_ACCEPT} image/webp
+#
+#   # rewrite only jpeg jpg and png files
+#   RewriteCond %{REQUEST_URI} (?i)(.*)(\.jpe?g|\.png)$
+#
+#   # rewrite only if there is a webp image
+#   RewriteCond %{DOCUMENT_ROOT}%1.webp -f
+#
+#   # redirect
+#   RewriteRule (?i)(.*)(\.jpe?g|\.png)$ %1\.webp [R=301,L,T=image/webp,R]
+# </IfModule>
 
 # The content type of the document varies depending on the browser
 <IfModule mod_headers.c>
   Header append Vary Accept env=REDIRECT_accept
 </IfModule>
 
-# 2 DAYS cache for webp
-<FilesMatch "\.(webp)$">
-  Header set Cache-Control "max-age=172800, public"
-</FilesMatch>
+# # 2 DAYS cache for webp
+# <FilesMatch "\.(webp)$">
+#   Header set Cache-Control "max-age=172800, public"
+# </FilesMatch>
 
 ####CUSTOM_TAILER####
 

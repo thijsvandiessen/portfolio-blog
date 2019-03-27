@@ -32,7 +32,7 @@ class Projects extends Component {
         </div>
         <div>
           <h2>To do project</h2>
-          <p>How easy is it to create a to do app in React?</p>
+          <p>How easy is it to create a to do app with React?</p>
           <Link to="projects/my-to-do-app" title="Discover my to do app">
             Read more...
           </Link>
