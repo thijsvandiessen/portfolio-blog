@@ -17,6 +17,7 @@ class ProjectImageOptimizations extends Component {
 
     // load the right images
     this.check_webp();
+
   }
 
   componentDidUpdate() {
@@ -54,7 +55,6 @@ class ProjectImageOptimizations extends Component {
     this.setState({
       images: images
     });
-
   }
 
   importAll(files){
@@ -63,12 +63,12 @@ class ProjectImageOptimizations extends Component {
     files.keys()
       .map((item, index) => images[item.replace('./', '')] = files(item));
     return images;
-  }
+  };
 
   render() {
 
     const heading = {
-      title: 'Image optimizations to improve SEO',
+      title: 'Lazy loading images to improve SEO',
       subTitle: "I implemented and documented some best practises",
     };
 
@@ -77,28 +77,36 @@ class ProjectImageOptimizations extends Component {
     return(
       <main>
         <article>
-        <GradientHeader heading={heading} />
-        <div className="content-container">
+          <GradientHeader heading={heading} />
+          <div className="content-container">
 
-        <p>What are the SEO best practises you can perform on images? I implemented and documented here some image optimizations to improve my overall SEO performance. I got a bit lost in my technical implementation but did not forget the bigger picture. If you want to be found, you should be found because of your high quality and original content.</p>
+          <p>If you implement lazy loading, does it actually attract more traffic? I implemented and documented my optimizations. I optimized my images with a descriptive text and implemented lazy loading with a fall back. I describe here my technical implementation but did not forget the bigger picture. If you want to be found, you should be found because of your high quality and original content, not because you lazy loaded an image.</p>
 
-        <p>But optimizations help. If you naturally describe what is in your image, without any keyword stuffing, then people can search for your image. There are a couple of ways that you can include text to an image. The most important one is alt text. But a title and caption can also help the user experience.</p>
+          <p>But optimizations help. If you naturally describe what is in your image, without any keyword stuffing, then people can find your image. There are a couple of ways that you can include text to an image. The most important one is alt text. But a title and caption can also help the user experience.</p>
 
-        <p>A fancy optimization I implemented on this site is lazy loading. The web needs to be fast and images need to be small but do they really need to be lazy loaded?</p>
+          <p>An other optimization I implemented is lazy loading. The web needs to be fast and images need to be small but do they really need to be lazy loaded?</p>
 
-        <p>I found out that it depends. Images above the fold don't need to be lazy loaded. It ruins the user experience when everything seem to be loading super slow. But images below the fold don't need to be loaded right away.</p>
+          <p>I found out that it depends. Images above the fold don't need to be lazy loaded. It ruins also the user experience when everything seem to be loading super slow. But images below the fold don't need to be loaded right away.</p>
 
-        <p>That is why the images on this page below the fold are lazy loaded. If your browser support it, then the images are also encoded in a next gen image format. I try to describe here and implement as much best practises and optimizations.</p>
+          <p>That is why the images on this page below the fold are lazy loaded. If your browser support it, then the images are also encoded in WebP, a next gen image format. I try to describe here and implement as much best practises and optimizations.</p>
 
-        <h2>My lazy loading implementation</h2>
+          <h2>Image sitemap</h2>
 
-        <p>The IntersectionObserver API can simply observe when an image is visible in the viewport. I store the image url in a data-src attribute and put that value in the src when the image should be visible.</p>
+          <p>To be sure that your images are indexed by search engens you can expose a seperate image sitemap. In an image sitemap you can also include extra information like geo location data.</p>
 
-        <p>The IntersectionObserver is unfortunately a new API. And thus only supported by modern browsers. This does not mean that you should not use this API. Performance benefits are important, and this API is a lot faster than my other implementation for older browsers.</p>
+          <p>Single page applications can be difficult to crawl. So including a sitemap guarantees that your site is going to be indexed. You can submit multiple sitemaps in Google Search Console and also monitor your indexed pages.</p>
 
-        <figure>
-          <code>
-            <pre>{`
+          <h2>My lazy loading implementation</h2>
+
+          <p>I was looking for a simple implementation and came accross multiple shady plugins and really old implementations. Then I found a simple solution by Google. They recommended the use of the intersection observer API.</p>
+
+          <p>The intersection observer API can simply observe when an image is visible in the viewport. I store the image url in a data-src attribute and put that value in the src when the image should be visible.</p>
+
+          <p>The IntersectionObserver is unfortunately a new API. And thus only supported by modern browsers. This does not mean that you should not use this API. Performance benefits are important, and this API is a lot faster than my other implementation for older browsers.</p>
+
+          <figure>
+            <code>
+              <pre>{`
 if ("IntersectionObserver" in window) {
   const imageObserver = new IntersectionObserver(images => {
     images.filter(image => image.isIntersecting === true)
@@ -119,7 +127,8 @@ if ("IntersectionObserver" in window) {
             </figcaption>
           </figure>
 
-          <p>As I mentioned, this IntersectionObserver API is not supported by every browser. So I needed a fallback. With the getBoundingClientRect API you can discover when an element is in the viewport too. But you have to use event listeners to scroll, resize and orientationchange. So the performance of the IntersectionObserver implementation is better.</p>
+          <h2>IntersectionObserver fallback</h2>
+          <p>As I mentioned, this IntersectionObserver API is not supported by every browser. So I needed a intersection observer fallback. With the <strong>getBoundingClientRect API</strong> you can discover when an element is in the viewport too. But you have to use event listeners to scroll, resize and orientationchange. So the performance of the IntersectionObserver implementation is a lot better.</p>
 
           <figure><code><pre>{`
 function oldSchoolLazyLoad() {
@@ -138,11 +147,11 @@ function oldSchoolLazyLoad() {
   })
 };
 
-oldSchoolLazyLoad();
-
 document.addEventListener("scroll", oldSchoolLazyLoad);
 window.addEventListener("resize", oldSchoolLazyLoad);
 window.addEventListener("orientationchange", oldSchoolLazyLoad);
+
+oldSchoolLazyLoad();
           `}</pre>
           </code>
           <figcaption>My lazy loading implementation for older browsers.</figcaption>
@@ -150,7 +159,6 @@ window.addEventListener("orientationchange", oldSchoolLazyLoad);
 
           <h2>Support when Javascript is disabled</h2>
           <p>Lazy loading images is done with Javascript. When there is no Javascript, simply no images are loaded. So if if you want lazy loading and see images when Javascript is not enabled you have to do something extra. When Javascript is disabled you can add a noscript version of your image that you want to display.</p>
-
           <figure>
             <code>
               <pre>{`
@@ -168,14 +176,14 @@ window.addEventListener("orientationchange", oldSchoolLazyLoad);
 
           <p>Only some of the newest browsers support WebP. So you need to progressively enhance your website for those browsers.</p>
 
-          <p>To omit the hassle of changing every hard coded image I first used a rewrite rule in my htaccess configuration file. You can automatically serve a WebP version of your image if the browser supports it. I followed basicly the instructions of <a href="https://www.digitalocean.com/community/tutorials/how-to-create-and-serve-webp-images-to-speed-up-your-website" titel="How to create and serve webp images">this article</a>.</p>
+          <p>To omit the hassle of changing every hard coded image I first used a rewrite rule in my htaccess configuration file. You can automatically serve a WebP version of your image if the browser supports it.</p>
 
-          <p>But I had a small problem. Google saw this as a redirection error in its mobile friendly test. To fix this issue I implemented a client side check. Because images are loaded in a asynchronous way </p>
+          <p>But I had a problem. Google saw this as a redirection error in its mobile friendly test. To fix this issue I implemented a client side check with a small lossy webp image. But because images are loaded in a asynchronous way, other images you like to lazy load need to be loaded in the callback of this WebP support check.</p>
 
           <figure>
             <code>
               <pre>{`
-check() {
+webpSupportCheck() {
   // a lossy webp image
   const testImage = "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA";
   const img = new Image();
@@ -189,7 +197,7 @@ check() {
                 `}</pre>
             </code>
             <figcaption>
-              A check to discover support for lossy webp images.
+              A check to discover support for lossy WebP images.
             </figcaption>
           </figure>
 
@@ -255,7 +263,7 @@ check() {
             />
             </a>
           </div>
-        }
+          }
           </div>
         </article>
       </main>

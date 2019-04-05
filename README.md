@@ -1,6 +1,6 @@
-# Simple webpack setup
+# Setup
 
-setup: npm install
+run: npm install
 
 ```
 dev:    npm run start
@@ -19,16 +19,18 @@ openssl req -nodes -new -x509 -keyout server.key -out server.cert
 ## Features
 
 - Fetches markdown content from another repository
+- Lazy loading images
 - Compiles scss to css
-- A css autoprefixer
+- Css autoprefixer
 - Minifies css
 - Uglifies JavaScript
-- Registers a Service Worker
+- Minifies HTML
+- Registers a Workbox Service Worker
 - A handy static folder
 - Manifest and icons
 - Uses the latest JavaScript syntax
-- And an experimental [dynamic import syntax](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import)
-
+- And an experimental [dynamic import syntax](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import) to create small chunks. This improves the performance.
+- Testing with Jest
 
 ## Todo
 

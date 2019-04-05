@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Loading from './Loading';
 
 const Home = lazy(() => import(
@@ -44,7 +44,10 @@ class Routes extends Component {
           component={LazyLoad(ProjectSound)} />
         <Route path="/projects/my-to-do-app" exact
           component={LazyLoad(ProjectTodo)} />
-          <Route path="/projects/image-optimizations-to-improve-seo" exact
+        <Redirect 
+          from="/projects/image-optimizations-to-improve-seo" 
+          to="/projects/lazy-loading-images-to-improve-seo"/>
+        <Route path="/projects/lazy-loading-images-to-improve-seo" exact
             component={LazyLoad(ProjectImageOptimizations)} />
         <Route path="/my-writings" exact
           component={LazyLoad(Blog)} />
