@@ -19,9 +19,7 @@ class ProjectSound extends Component {
     this.play = this.play.bind(this);
     this.handleTune = this.handleTune.bind(this);
     this.handleWave = this.handleWave.bind(this);
-
     this.tick = this.tick.bind(this);
-
 
   }
 

@@ -1,16 +1,22 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
-
+/**
+ * A class that returns the projects component
+ */
 class Projects extends Component {
 
+  /**
+   * It returns a list of projects
+   * @returns {jsx} of projects The sum of the two numbers.
+  */
   render() {
-
     return (
       <section className="content-container projects">
         <div>
           <h2>This portfolio</h2>
-          <p>I started to play with React and Webpack and then this happend. I first wanted to create a blog with articlesm written in Markdown stored somewhere else. So I did.</p>
+          <p>I started to play with React and Webpack and then this happend.
+            I first wanted to create a blog with articlesm written in Markdown stored somewhere else. So I did.</p>
           <Link to="my-writings" tite="Read my articles written in Markdown">
             Read more...
           </Link>
