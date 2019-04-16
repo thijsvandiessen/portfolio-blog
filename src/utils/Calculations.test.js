@@ -1,7 +1,7 @@
 import * as calc from './Calculations';
 
 test('adds 1 + 2 to equal 3', () => {
-  expect(calc.sum(1, 2)).toBe(3);
+  expect(calc.add(1, 2)).toBe(3);
 });
 
 test('substracts 20 - 5 to equal 15', () => {
