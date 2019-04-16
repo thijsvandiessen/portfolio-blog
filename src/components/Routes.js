@@ -9,7 +9,7 @@ const Projects = lazy(() => import(
 const ProjectSound = lazy(() => import(
     /* webpackChunkName: 'projectSound' */ "./ProjectSound"));
 const ProjectTodo = lazy(() => import(
-  /* webpackChunkName: 'projectCalculator' */ "./ProjectCalculator"));
+  /* webpackChunkName: 'ProjectTodo' */ "./ProjectTodo"));
   const ProjectCalculator = lazy(() => import(
     /* webpackChunkName: 'projectCalculator' */ "./ProjectCalculator"));
 const ProjectImageOptimizations = lazy(() => import(
