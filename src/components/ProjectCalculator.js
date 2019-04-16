@@ -16,39 +16,36 @@ class ProjectCalculator extends Component {
       secondNumber: null,
       operator: null,
     };
-
-    this.store = this.store.bind(this);
-    this.storeNumber = this.storeNumber.bind(this);
   };
 
   /**
-  * initialize
+  * initialize, add event listeners
   */
   componentDidMount() {
-    this.action();
+    this.watch();
   };
 
   /**
-    * It registers a value
+    * Add event listener to buttons
     * @return {void} the action
     */
-  action() {
+  watch() {
     const buttons = document.querySelector('.calculator__app');
     buttons.addEventListener('click', (event) => {
       // when we have a false input, return
       if (event.target.innerText.length > 1) return;
 
       // store the target value
-      this.store(event.target.value);
+      this.registerAction(event.target.value);
     });
   };
 
   /**
-  * store action or number
-  * @param {input} number or action
-  * @return {void} stores the number or action
+  * register action or number
+  * @param {string} input - number or action
+  * @return {void} decides what to do
   */
-  store(input) {
+  registerAction(input) {
     // clear
     if (input === 'clear') {
       this.setState({
@@ -65,114 +62,140 @@ class ProjectCalculator extends Component {
       return;
     }
 
+    // if the input is an action, store this action
+    if (isNaN(input) && input !== 'decimal') {
+      this.storeOperator(input);
+      return;
+    }
+
     // if the input is a decimal
     if (input === 'decimal') {
-      this.storeNumber('.');
+      this.storeFirstNumber('.');
       return;
     }
 
-    // store this number
-    if (!isNaN(input)) {
-      this.storeNumber(input);
-      return;
-    }
-
-    // if the input is an action, store this action
-    if (isNaN(input)) {
-      if (!this.state.firstNumber) return;
-      this.setState(() => ({
-        operator: input,
-      }));
-      return;
-    }
+    this.storeFirstNumber(input);
   }
 
   /**
-  * store number or operator
-  * @param {int} number
-  * @return {void} stores the number or operator
+  * Store the first number
+  * @param {string} number - the number that needs to be stored
+  * @return {void} stores the number
   */
-  storeNumber(number) {
-    // if there is an operator, store secondNumber
-    if (this.state.operator) {
-      if (this.state.secondNumber === null) {
-        this.setState({
-          secondNumber: number,
-        });
-      } else {
-        if (number.includes('.') && this.state.secondNumber.includes('.')) {
-          return;
-        }
-        this.setState((state) => ({
-          secondNumber: state.secondNumber + number,
-        }));
-      }
-      return;
-    }
+  storeFirstNumber(number) {
 
+    // convert to string
+    let num = number;
+    if (typeof number === 'number') num = number.toString();
+    // store second number
+    if (this.state.operator) return this.storeSecondNumber(num);
     // store first number
     // don't start a number with a zero
     if (this.state.firstNumber === null) {
       this.setState({
-        firstNumber: number,
+        firstNumber: num,
       });
     } else {
-      if (number.includes('.') && this.state.firstNumber.includes('.')) {
-        console.log('firstnumber allready includes a decimal');
-        return;
-      }
+      // no dubble dots
+      if (num.includes('.') && this.state.firstNumber.includes('.')) return;
       this.setState((state) => ({
-        firstNumber: state.firstNumber + number,
+        firstNumber: state.firstNumber + num,
       }));
     }
-  };
+  }
+
+  /**
+  * Store the second number
+  * @param {string} number - the number that needs to be stored
+  * @return {void} stores the number
+  */
+  storeSecondNumber(number) {
+    // the first number
+    if (this.state.secondNumber === null && !number.includes('.')) {
+      this.setState({
+        secondNumber: number,
+      });
+      return;
+    }
+    // if the first number is a dot, append a zero
+    if (this.state.secondNumber === null && number.includes('.')) {
+      this.setState({
+        secondNumber: 0 + number,
+      });
+      return;
+    }
+
+    // if the first number is a zero
+    if (this.state.secondNumber == 0 && number == 0) {
+      this.setState({
+        secondNumber: number,
+      });
+      return;
+    }
+
+    // If there is already a dot, return
+    if (number.includes('.') && this.state.secondNumber.includes('.')) {
+      return;
+    }
+
+    this.setState((state) => ({
+      secondNumber: state.secondNumber + number,
+    }));
+  }
+
+  /**
+  * Store the operator
+  * @param {string} operator - the operator that needs to be stored
+  * @return {void} stores the operator
+  */
+  storeOperator(operator) {
+    // we need a first number
+    if (!this.state.firstNumber) return;
+    // remove ugly trailing dot
+    if (this.state.firstNumber.endsWith('.')) {
+      this.setState((state) => ({
+        firstNumber: state.firstNumber.slice(0, -1),
+      }));
+    }
+    this.setState(() => ({
+      operator: operator,
+    }));
+  }
 
   /**
   * calculate
-  * @return {void} stores the answer in the firstNumber state
+  * @return {void} returns the answer
   */
   calculate() {
     // I can't calculate a single number
     if (!this.state.secondNumber) return;
 
+    // create a number from a string
     const a = parseFloat(this.state.firstNumber);
     const b = parseFloat(this.state.secondNumber);
 
     if (this.state.operator === 'add') {
-      const ans = calc.add(a, b);
-      this.setState({
-        firstNumber: ans,
-        secondNumber: null,
-        operator: null,
-      });
+      this.answer(calc.add(a, b));
+    } else if (this.state.operator === 'subtract') {
+      this.answer(calc.subtract(a, b));
+    } else if (this.state.operator === 'multiply') {
+      this.answer(calc.multiply(a, b));
+    } else if (this.state.operator === 'divide') {
+      this.answer(calc.divide(a, b));
     }
+  }
 
-    if (this.state.operator === 'subtract') {
-      const ans = calc.subtract(a, b);
-      this.setState({
-        firstNumber: ans,
-        secondNumber: null,
-        operator: null,
-      });
-    }
-
-    if (this.state.operator === 'multiply') {
-      const ans = calc.multiply(a, b);
-      this.setState({
-        firstNumber: ans,
-        secondNumber: null,
-        operator: null,
-      });
-    }
-
-    if (this.state.operator === 'divide') {
-      const ans = calc.divide(a, b);
-      this.setState({
-        firstNumber: ans,
-        secondNumber: null,
-        operator: null,
-      });
-    }
+  /**
+  * Stores the answer as first number and clears the rest
+  * @param {int} ans - the answer that needs to be stored
+  * @return {void} stores the answer in the firstNumber state
+  */
+  answer(ans) {
+    this.storeFirstNumber(ans);
+    this.setState({
+      secondNumber: null,
+      operator: null,
+    });
   }
 
   /**
@@ -191,8 +214,10 @@ class ProjectCalculator extends Component {
         <section className="content-container">
           <div className="calculator__app">
             <div className="calculator__display">
-              {this.state.firstNumber} {this.state.operator} {this.state.secondNumber >= 0 && 
-                <span>{this.state.secondNumber}</span>
+              <span>{this.state.firstNumber} </span>
+              {this.state.operator}
+              {this.state.secondNumber >= 0 &&
+                <span> {this.state.secondNumber}</span>
               }</div>
             <div className="calculator__keys">
               <div className="calculator__numbers">
