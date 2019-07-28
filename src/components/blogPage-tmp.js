@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BlogArticles from './BlogArticles';
-import GradientHeader from './GradientHeader';
+import BlogArticles from './blogArticles-tmp';
+import GradientHeader from './gradientHeader-tmp';
 
 class BlogPage extends Component {
 
@@ -12,8 +12,8 @@ class BlogPage extends Component {
 
     return (
       <main>
-        <GradientHeader heading={heading}/>
-        <BlogArticles/>
+        <GradientHeader heading={heading} />
+        <BlogArticles />
       </main>
     );
   }

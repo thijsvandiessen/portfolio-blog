@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GradientHeader from './GradientHeader';
+import GradientHeader from './gradientHeader-tmp';
 
 class ProjectTodo extends Component {
 
@@ -72,7 +72,7 @@ class ProjectTodo extends Component {
 
   };
 
-  deleteTask(idx){
+  deleteTask(idx) {
 
     // make a separate copy of the array
     const tasks = [...this.state.tasks];
@@ -81,12 +81,12 @@ class ProjectTodo extends Component {
     tasks.splice(idx, 1);
 
     // update state
-    this.setState({tasks: tasks},
-    () => this.storeTasks());
+    this.setState({ tasks: tasks },
+      () => this.storeTasks());
 
   }
 
-  crossItem(idx){
+  crossItem(idx) {
 
     // make a separate copy of the array
     const tasks = [...this.state.tasks];
@@ -95,8 +95,8 @@ class ProjectTodo extends Component {
     tasks[idx].checked = !tasks[idx].checked;
 
     // update state
-    this.setState({tasks: tasks},
-    () => this.storeTasks());
+    this.setState({ tasks: tasks },
+      () => this.storeTasks());
 
   }
 
@@ -108,7 +108,7 @@ class ProjectTodo extends Component {
       subTitle: 'What happends when I want to create a to do app with React?',
     };
 
-    return(
+    return (
       <main>
         <GradientHeader heading={heading} />
 
@@ -117,7 +117,7 @@ class ProjectTodo extends Component {
           <h2>Tasks</h2>
 
           <ul className="todoList">
-            {this.state.tasks.map((item,idx) => (
+            {this.state.tasks.map((item, idx) => (
               <li key={idx}>
                 <span
                   className={item.checked ? 'checked' : 'unchecked'}

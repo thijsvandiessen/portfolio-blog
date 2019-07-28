@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class ContactForm extends Component {
 
@@ -36,7 +36,7 @@ class ContactForm extends Component {
         value={this.state.email}
         onChange={this.handleChange.bind(this)}
         required="required"
-        placeholder="I would like to contact you too"/>
+        placeholder="I would like to contact you too" />
       <label htmlFor="message">Message:</label>
       <textarea
         id="message"
@@ -46,9 +46,9 @@ class ContactForm extends Component {
         placeholder="Your message">
       </textarea>
       <input type="hidden" name="isValidated" value="false" />
-      <input type="submit" value="Submit" className="button"/>
+      <input type="submit" value="Submit" className="button" />
     </form>
-  );
+    );
   }
 }
 

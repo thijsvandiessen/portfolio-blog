@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import * as calc from '../utils/Calculations';
+import React, { Component } from 'react';
+import * as calc from '../utils/calculations-tmp';
 
 /**
  * A class that returns my calculator project

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import Loading from './Loading';
-import GradientHeader from './GradientHeader';
-import Blog from '../utils/Blog';
+import Loading from './loading-tmp';
+import GradientHeader from './gradientHeader-tmp';
+import Blog from '../utils/blog-tmp';
 
 class ArticlePage extends Component {
 
@@ -17,7 +17,7 @@ class ArticlePage extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
     // We need to load this article if we don't have it yet
     if (!this.props.history.location.state) {
@@ -35,15 +35,15 @@ class ArticlePage extends Component {
             // we need to download this article
 
             blog.getArticles(data[i]).then(article => {
-              this.setState({article: article, loading: false})
+              this.setState({ article: article, loading: false })
             })
 
           } else {
-            this.setState({loading: false})
+            this.setState({ loading: false })
           }
         }
       })
-      .catch(error => this.setState({error: true}))
+        .catch(error => this.setState({ error: true }))
 
     }
 
@@ -66,11 +66,11 @@ class ArticlePage extends Component {
     };
 
     if (this.state.loading === true) {
-      return (<main><Loading/></main>);
+      return (<main><Loading /></main>);
     }
 
     else if (this.state.article === null) {
-      return(
+      return (
         <main><GradientHeader heading={heading} /></main>
       );
     }
@@ -78,7 +78,7 @@ class ArticlePage extends Component {
     else if (this.state.article !== null) {
       return (
         <main>
-          <article className="content-container"><ReactMarkdown source={this.state.article}/></article>
+          <article className="content-container"><ReactMarkdown source={this.state.article} /></article>
         </main>
       );
     }

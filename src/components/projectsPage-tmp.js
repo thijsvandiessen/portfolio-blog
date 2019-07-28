@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import GradientHeader from './GradientHeader';
-import Projects from './Projects';
+import GradientHeader from './gradientHeader-tmp';
+import Projects from './projects-tmp';
 
 
 class ProjectPage extends Component {
@@ -19,8 +19,8 @@ class ProjectPage extends Component {
 
     return (
       <main>
-        <GradientHeader heading={heading}/>
-        <Projects/>
+        <GradientHeader heading={heading} />
+        <Projects />
       </main>
     );
   }

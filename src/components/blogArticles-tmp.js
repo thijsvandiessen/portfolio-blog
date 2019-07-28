@@ -1,9 +1,9 @@
 import React, { lazy, Suspense, Component } from 'react';
-import Loading from './Loading';
+import Loading from './loading-tmp';
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown';
 
-import Blog from '../utils/Blog';
+import Blog from '../utils/blog-tmp';
 
 class BlogArticles extends Component {
 
@@ -34,17 +34,17 @@ class BlogArticles extends Component {
             data[i].url = window.location.pathname + data[i].name.slice(13, -3).toLowerCase();
           };
 
-        this.setState({ blog: data, loading: false });
+          this.setState({ blog: data, loading: false });
 
-      })
+        })
     })
-    .catch(error => this.setState({error: error}));
+      .catch(error => this.setState({ error: error }));
   };
 
   render() {
 
     // check state and display the appropriate element
-    if (this.state.error !== null ) {
+    if (this.state.error !== null) {
       return (
         <section>
           <p>Sorry, I'm not able to load my blog posts</p>
@@ -54,7 +54,7 @@ class BlogArticles extends Component {
 
     else if (this.state.loading === true) {
       return (
-        <section><Loading/></section>
+        <section><Loading /></section>
       );
     }
 
@@ -62,14 +62,14 @@ class BlogArticles extends Component {
 
       return (
         <section>
-        {this.state.blog.map((item,idx) => (
-          <article className="content-container" key={idx}>
-          <ReactMarkdown source={item.article.substring(0,180) + '...'}/>
-          <Link to={{pathname: item.url, state: { article: item.article },}}>
-            Read more...
+          {this.state.blog.map((item, idx) => (
+            <article className="content-container" key={idx}>
+              <ReactMarkdown source={item.article.substring(0, 180) + '...'} />
+              <Link to={{ pathname: item.url, state: { article: item.article }, }}>
+                Read more...
           </Link>
-          </article>
-        ))}
+            </article>
+          ))}
         </section>
       );
     }

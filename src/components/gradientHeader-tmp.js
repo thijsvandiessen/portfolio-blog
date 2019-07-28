@@ -8,7 +8,7 @@ class GradientHeader extends Component {
     document.title = this.props.heading.title;
   }
 
-  button(){
+  button() {
     return <a href="test">test</a>
   }
 

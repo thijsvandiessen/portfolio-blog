@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GradientHeader from './GradientHeader';
+import GradientHeader from './gradientHeader-tmp';
 
 class HomePage extends Component {
 

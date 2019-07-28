@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ContactForm from './ContactForm';
-import GradientHeader from './GradientHeader';
+import ContactForm from './contactForm-tmp';
+import GradientHeader from './gradientHeader-tmp';
 
 
 class ContactPage extends Component {
@@ -13,7 +13,7 @@ class ContactPage extends Component {
 
     return (
       <main>
-        <GradientHeader heading={heading}/>
+        <GradientHeader heading={heading} />
         <section className="content-container">
           <h2>Send me an email and I will get back to you.</h2>
           <ContactForm />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GradientHeader from './GradientHeader';
+import GradientHeader from './gradientHeader-tmp';
 
 class ProjectSound extends Component {
 
@@ -48,7 +48,7 @@ class ProjectSound extends Component {
       }
 
       // safari bug
-      if(audioCtx === null) {
+      if (audioCtx === null) {
         alert("Do not click like a maniac, reload to fix this bug.");
         return;
       }
@@ -57,7 +57,7 @@ class ProjectSound extends Component {
       const oscillator = audioCtx.createOscillator();
 
       // we need to store this node to stop it
-      this.setState({node: oscillator});
+      this.setState({ node: oscillator });
 
       // create gain node to modify the volume
       const gainNode = audioCtx.createGain();
@@ -166,7 +166,7 @@ class ProjectSound extends Component {
       },
     };
 
-    return(
+    return (
       <main>
         <GradientHeader heading={heading} />
         <form className="content-container">
@@ -178,18 +178,18 @@ class ProjectSound extends Component {
             max="1000"
             value={this.state.frequency}
             onChange={this.handleTune}
-            step="1"/>
-            <label htmlFor="waveForm">Select another wave form:</label>
-            <select
-              name="waveForm"
-              onChange={this.handleWave}
-              value={this.state.waveForm}
-              >
-              <option value="sine">sine</option>
-              <option value="square">square</option>
-              <option value="sawtooth">sawtooth</option>
-              <option value="triangle">triangle</option>
-            </select>
+            step="1" />
+          <label htmlFor="waveForm">Select another wave form:</label>
+          <select
+            name="waveForm"
+            onChange={this.handleWave}
+            value={this.state.waveForm}
+          >
+            <option value="sine">sine</option>
+            <option value="square">square</option>
+            <option value="sawtooth">sawtooth</option>
+            <option value="triangle">triangle</option>
+          </select>
         </form>
 
         <canvas ref={this.canvas}></canvas>

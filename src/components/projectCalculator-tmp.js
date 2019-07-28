@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import GradientHeader from './GradientHeader';
-import Calculator from './Calculator';
+import React, { Component } from 'react';
+import GradientHeader from './gradientHeader-tmp';
+import Calculator from './calculator-tmp';
 
 /**
  * A class that returns my calculator project
@@ -21,7 +21,7 @@ class ProjectCalculator extends Component {
       <main>
         <GradientHeader heading={heading} />
         <section className="content-container">
-          <Calculator/>
+          <Calculator />
         </section>
       </main>
     );

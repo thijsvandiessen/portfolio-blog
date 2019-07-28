@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import GradientHeader from './GradientHeader';
+import React, { Component } from 'react';
+import GradientHeader from './gradientHeader-tmp';
 import lazyLoad from '../utils/lazyLoad';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /**
  * A class that returns my lazy load project description
@@ -59,15 +59,15 @@ class ProjectImageOptimizations extends Component {
     // if the browser supports webp
     if (result) {
       images = this.importAll(require.context(
-          '../images/portfolio/',
-          false,
-          /\.(jpg)$/)
+        '../images/portfolio/',
+        false,
+        /\.(jpg)$/)
       );
     } else {
       images = this.importAll(require.context(
-          '../images/portfolio/',
-          false,
-          /\.(jpg)$/)
+        '../images/portfolio/',
+        false,
+        /\.(jpg)$/)
       );
     }
 
@@ -150,7 +150,7 @@ if ("IntersectionObserver" in window) {
             `}</pre>
               </code>
               <figcaption>
-              My lazy loading implementation for modern browsers.
+                My lazy loading implementation for modern browsers.
               </figcaption>
             </figure>
 
@@ -181,7 +181,7 @@ window.addEventListener("orientationchange", oldSchoolLazyLoad);
 oldSchoolLazyLoad();
           `}</pre>
             </code>
-            <figcaption>My lazy loading implementation for older browsers.</figcaption>
+              <figcaption>My lazy loading implementation for older browsers.</figcaption>
             </figure>
 
             <h2>Support when Javascript is disabled</h2>
@@ -195,7 +195,7 @@ oldSchoolLazyLoad();
           `}</pre>
               </code>
               <figcaption>
-              A solution to load images when Javascript is disabled
+                A solution to load images when Javascript is disabled
               </figcaption>
             </figure>
 
@@ -224,7 +224,7 @@ webpSupportCheck() {
                 `}</pre>
               </code>
               <figcaption>
-              A check to discover support for lossy WebP images.
+                A check to discover support for lossy WebP images.
               </figcaption>
             </figure>
 
@@ -240,56 +240,56 @@ webpSupportCheck() {
             <p>Six images with each a tiny blurred version and a bigger version that loads a lot slower. Each image has also a WebP counterpart. Thus there are in total 24 images here.</p>
 
             {images &&
-          <div className="gallery">
-            <a href="../assets/IMG_1790.jpg"
-              title="Open this image of Rydal Cave, Lake District">
-              <img
-                src={images[Object.keys(images)[0]]}
-                data-src={images[Object.keys(images)[1]]}
-                alt="Rydal Cave, a stone quarry in the Lake District"
-                title="Rydal Cave, Lake District"
-              />
-            </a>
-            <a href="../assets/IMG_2543.jpg" title="Open this image of Buttermere and Crummock Water, Lake District">
-              <img
-                src={images[Object.keys(images)[2]]}
-                data-src={images[Object.keys(images)[3]]}
-                alt="Buttermere and Crummock Water from the mountains"
-                title="Buttermere and Crummock Water, Lake District"
-              />
-            </a>
-            <a href="../assets/IMG_4442.jpg" title="Open this image of the Antelope Canyon">
-              <img
-                src={images[Object.keys(images)[4]]}
-                data-src={images[Object.keys(images)[5]]}
-                alt="The lower Antelope Canyon in Arizona"
-                title="Antelope Canyon in the Navajo Nation. This sandstone slot canyon is renowned for its undulating angles & light shafts."
-              />
-            </a>
-            <a href="../assets/IMG_4468.jpg" title="Open image Sunrise at Zion, a detail from the Patriarchs.">
-              <img src={images[Object.keys(images)[6]]}
-                data-src={images[Object.keys(images)[7]]}
-                alt="Detail of the Patriarchs at sunrise. An impressive sandstone cliff at Zion National Park."
-                title="Sunrise at Zion, a detail from the Patriarchs."
-              />
-            </a>
-            <a href="../assets/IMG_5358.jpg" title="Open this image of a Mule Deer at Bryce National Park">
-              <img
-                src={images[Object.keys(images)[8]]}
-                data-src={images[Object.keys(images)[9]]}
-                alt="A close up from a young Mule Deer at Bryce National Park"
-                title="A Mule Deer at Bryce National Park"
-              />
-            </a>
-            <a href="../assets/IMG_5921.jpg" title="Open this image of me, casually looking into the Grand Canyon">
-              <img
-                src={images[Object.keys(images)[10]]}
-                data-src={images[Object.keys(images)[11]]}
-                alt="Standing on a rock in the Grand Canyon at sunrise."
-                title="Casually looking into the Grand Canyon"
-              />
-            </a>
-          </div>
+              <div className="gallery">
+                <a href="../assets/IMG_1790.jpg"
+                  title="Open this image of Rydal Cave, Lake District">
+                  <img
+                    src={images[Object.keys(images)[0]]}
+                    data-src={images[Object.keys(images)[1]]}
+                    alt="Rydal Cave, a stone quarry in the Lake District"
+                    title="Rydal Cave, Lake District"
+                  />
+                </a>
+                <a href="../assets/IMG_2543.jpg" title="Open this image of Buttermere and Crummock Water, Lake District">
+                  <img
+                    src={images[Object.keys(images)[2]]}
+                    data-src={images[Object.keys(images)[3]]}
+                    alt="Buttermere and Crummock Water from the mountains"
+                    title="Buttermere and Crummock Water, Lake District"
+                  />
+                </a>
+                <a href="../assets/IMG_4442.jpg" title="Open this image of the Antelope Canyon">
+                  <img
+                    src={images[Object.keys(images)[4]]}
+                    data-src={images[Object.keys(images)[5]]}
+                    alt="The lower Antelope Canyon in Arizona"
+                    title="Antelope Canyon in the Navajo Nation. This sandstone slot canyon is renowned for its undulating angles & light shafts."
+                  />
+                </a>
+                <a href="../assets/IMG_4468.jpg" title="Open image Sunrise at Zion, a detail from the Patriarchs.">
+                  <img src={images[Object.keys(images)[6]]}
+                    data-src={images[Object.keys(images)[7]]}
+                    alt="Detail of the Patriarchs at sunrise. An impressive sandstone cliff at Zion National Park."
+                    title="Sunrise at Zion, a detail from the Patriarchs."
+                  />
+                </a>
+                <a href="../assets/IMG_5358.jpg" title="Open this image of a Mule Deer at Bryce National Park">
+                  <img
+                    src={images[Object.keys(images)[8]]}
+                    data-src={images[Object.keys(images)[9]]}
+                    alt="A close up from a young Mule Deer at Bryce National Park"
+                    title="A Mule Deer at Bryce National Park"
+                  />
+                </a>
+                <a href="../assets/IMG_5921.jpg" title="Open this image of me, casually looking into the Grand Canyon">
+                  <img
+                    src={images[Object.keys(images)[10]]}
+                    data-src={images[Object.keys(images)[11]]}
+                    alt="Standing on a rock in the Grand Canyon at sunrise."
+                    title="Casually looking into the Grand Canyon"
+                  />
+                </a>
+              </div>
             }
           </div>
         </article>
