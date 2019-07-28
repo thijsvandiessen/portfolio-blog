@@ -10,7 +10,7 @@ const ProjectSound = lazy(() => import(
     /* webpackChunkName: 'projectSound' */ "./ProjectSound"));
 const ProjectTodo = lazy(() => import(
   /* webpackChunkName: 'ProjectTodo' */ "./ProjectTodo"));
-  const ProjectCalculator = lazy(() => import(
+const ProjectCalculator = lazy(() => import(
     /* webpackChunkName: 'projectCalculator' */ "./ProjectCalculator"));
 const ProjectImageOptimizations = lazy(() => import(
   /* webpackChunkName: 'ProjectImgOpt' */ "./ProjectImageOptimizations"));
@@ -23,7 +23,7 @@ const About = lazy(() => import(
 const Contact = lazy(() => import(
   /* webpackChunkName: 'contact' */ "./ContactPage"));
 const NoMatch = lazy(() => import(
-  /* webpackChunkName: 'noMatch' */ "./noMatch"));
+  /* webpackChunkName: 'noMatch' */ "./NoMatch"));
 
 function LazyLoad(Component) {
   return props => (
@@ -38,61 +38,61 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           exact
-          component={LazyLoad(Home)} 
+          component={LazyLoad(Home)}
         />
-        <Route 
-          path="/projects" 
+        <Route
+          path="/projects"
           exact
-          component={LazyLoad(Projects)} 
+          component={LazyLoad(Projects)}
         />
-        <Route 
-          path="/projects/sound-project" 
+        <Route
+          path="/projects/sound-project"
           exact
-          component={LazyLoad(ProjectSound)} 
+          component={LazyLoad(ProjectSound)}
         />
-        <Route 
-          path="/projects/my-to-do-app" 
+        <Route
+          path="/projects/my-to-do-app"
           exact
-          component={LazyLoad(ProjectTodo)} 
+          component={LazyLoad(ProjectTodo)}
         />
-        <Redirect 
-          from="/projects/image-optimizations-to-improve-seo" 
+        <Redirect
+          from="/projects/image-optimizations-to-improve-seo"
           to="/projects/lazy-loading-images-to-improve-seo"
         />
-        <Route 
-          path="/projects/lazy-loading-images-to-improve-seo" 
+        <Route
+          path="/projects/lazy-loading-images-to-improve-seo"
           exact
-          component={LazyLoad(ProjectImageOptimizations)} 
+          component={LazyLoad(ProjectImageOptimizations)}
         />
-        <Route 
-          path="/projects/my-react-calculator" 
+        <Route
+          path="/projects/my-react-calculator"
           exact
-          component={LazyLoad(ProjectCalculator)} 
+          component={LazyLoad(ProjectCalculator)}
         />
-        <Route 
-          path="/my-writings" 
+        <Route
+          path="/my-writings"
           exact
-          component={LazyLoad(Blog)} 
+          component={LazyLoad(Blog)}
         />
-        <Route 
+        <Route
           path="/my-writings/:article"
-          component={LazyLoad(Article)} 
+          component={LazyLoad(Article)}
         />
-        <Route 
-          path="/about" 
+        <Route
+          path="/about"
           exact
-          component={LazyLoad(About)} 
+          component={LazyLoad(About)}
         />
-        <Route 
-          path="/contact" 
+        <Route
+          path="/contact"
           exact
-          component={LazyLoad(Contact)} 
+          component={LazyLoad(Contact)}
         />
-        <Route component={LazyLoad(NoMatch)} 
-      />
+        <Route component={LazyLoad(NoMatch)}
+        />
       </Switch>
     );
   }
