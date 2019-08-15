@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
 
 class Navigation extends Component {
-
   constructor() {
     super();
 
     this.state = {
-      isToggleOn: false
+      isToggleOn: false,
     };
 
     // This binding is necessary to make `this` work in the callback
@@ -15,8 +14,8 @@ class Navigation extends Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState((state) => ({
+      isToggleOn: !state.isToggleOn,
     }));
   }
 

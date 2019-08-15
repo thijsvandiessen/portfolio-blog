@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import GradientHeader from './gradientHeader-tmp';
 import lazyLoad from '../utils/lazyLoad';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 /**
  * A class that returns my lazy load project description
@@ -59,15 +59,15 @@ class ProjectImageOptimizations extends Component {
     // if the browser supports webp
     if (result) {
       images = this.importAll(require.context(
-        '../images/portfolio/',
-        false,
-        /\.(jpg)$/)
+          '../images/portfolio/',
+          false,
+          /\.(jpg)$/)
       );
     } else {
       images = this.importAll(require.context(
-        '../images/portfolio/',
-        false,
-        /\.(jpg)$/)
+          '../images/portfolio/',
+          false,
+          /\.(jpg)$/)
       );
     }
 
@@ -181,7 +181,7 @@ window.addEventListener("orientationchange", oldSchoolLazyLoad);
 oldSchoolLazyLoad();
           `}</pre>
             </code>
-              <figcaption>My lazy loading implementation for older browsers.</figcaption>
+            <figcaption>My lazy loading implementation for older browsers.</figcaption>
             </figure>
 
             <h2>Support when Javascript is disabled</h2>

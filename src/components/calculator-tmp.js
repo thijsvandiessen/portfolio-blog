@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import * as calc from '../utils/calculations-tmp';
 
 /**
@@ -82,7 +82,6 @@ class Calculator extends Component {
   * @return {void} stores the number
   */
   storeFirstNumber(number) {
-
     // convert to string
     let num = number;
     if (typeof number === 'number') num = number.toString();

@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class GradientHeader extends Component {
-
   componentDidMount() {
     // Set the html page title
     document.title = this.props.heading.title;
   }
 
   button() {
-    return <a href="test">test</a>
+    return <a href="test">test</a>;
   }
 
   render() {
-
     const heading = this.props.heading;
 
     return (
@@ -42,7 +40,7 @@ class GradientHeader extends Component {
         }
 
       </header>
-    )
+    );
   }
 }
 

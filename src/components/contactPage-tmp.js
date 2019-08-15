@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ContactForm from './contactForm-tmp';
 import GradientHeader from './gradientHeader-tmp';
 
 
 class ContactPage extends Component {
-
   render() {
-
     const heading = {
-      title: "Get in contact with me",
-    }
+      title: 'Get in contact with me',
+    };
 
     return (
       <main>

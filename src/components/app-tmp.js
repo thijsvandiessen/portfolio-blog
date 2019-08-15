@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import lazyLoad from '../utils/lazyLoad';
 
 import ScrollToTop from './scrollToTop-tmp';
@@ -9,11 +9,9 @@ import Routes from './routes-tmp';
 import Footer from './footer-tmp';
 
 class App extends Component {
-
   componentDidMount() {
-
     // lazyload images
-    lazyLoad()
+    lazyLoad();
   }
 
   render() {

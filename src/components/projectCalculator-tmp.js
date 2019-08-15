@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import GradientHeader from './gradientHeader-tmp';
 import Calculator from './calculator-tmp';
 
@@ -6,7 +6,6 @@ import Calculator from './calculator-tmp';
  * A class that returns my calculator project
  */
 class ProjectCalculator extends Component {
-
   /**
     * It returns my calculator
     * @return {object}

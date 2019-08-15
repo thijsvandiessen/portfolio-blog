@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 /**
  * A class that returns the projects component
  */
 class Projects extends Component {
-
   /**
    * It returns a list of my projects
    * @return {object} jsx

@@ -1,29 +1,27 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class ContactForm extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       message: '',
-      isValidated: false
-    }
+      isValidated: false,
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    let change = {}
-    change[event.target.name] = event.target.value
-    this.setState(change)
+    const change = {};
+    change[event.target.name] = event.target.value;
+    this.setState(change);
   }
 
   handleSubmit(event) {
     // todo
   }
-
 
 
   render() {
