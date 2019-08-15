@@ -1,29 +1,29 @@
 import React, { lazy, Suspense, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Loading from './loading-tmp';
+import Loading from './loading';
 
 const Home = lazy(() => import(
-  /* webpackChunkName: 'home' */ "./homePage-tmp"));
+  /* webpackChunkName: 'home' */ "./homePage"));
 const Projects = lazy(() => import(
-  /* webpackChunkName: 'projects' */ "./projectsPage-tmp"));
+  /* webpackChunkName: 'projects' */ "./projectsPage"));
 const ProjectSound = lazy(() => import(
-    /* webpackChunkName: 'projectSound' */ "./projectSound-tmp"));
+    /* webpackChunkName: 'projectSound' */ "./projectSound"));
 const ProjectTodo = lazy(() => import(
-  /* webpackChunkName: 'ProjectTodo' */ "./projectTodo-tmp"));
+  /* webpackChunkName: 'ProjectTodo' */ "./projectTodo"));
 const ProjectCalculator = lazy(() => import(
-    /* webpackChunkName: 'projectCalculator' */ "./projectCalculator-tmp"));
+    /* webpackChunkName: 'projectCalculator' */ "./projectCalculator"));
 const ProjectImageOptimizations = lazy(() => import(
-  /* webpackChunkName: 'ProjectImgOpt' */ "./projectImageOptimizations-tmp"));
+  /* webpackChunkName: 'ProjectImgOpt' */ "./projectImageOptimizations"));
 const Blog = lazy(() => import(
-  /* webpackChunkName: 'blog' */ "./blogPage-tmp"));
+  /* webpackChunkName: 'blog' */ "./blogPage"));
 const Article = lazy(() => import(
-  /* webpackChunkName: 'article' */ "./articlePage-tmp"));
+  /* webpackChunkName: 'article' */ "./articlePage"));
 const About = lazy(() => import(
-  /* webpackChunkName: 'about' */ "./aboutPage-tmp"));
+  /* webpackChunkName: 'about' */ "./aboutPage"));
 const Contact = lazy(() => import(
-  /* webpackChunkName: 'contact' */ "./contactPage-tmp"));
+  /* webpackChunkName: 'contact' */ "./contactPage"));
 const NoMatch = lazy(() => import(
-  /* webpackChunkName: 'noMatch' */ "./noMatch-tmp"));
+  /* webpackChunkName: 'noMatch' */ "./noMatch"));
 
 function LazyLoad(Component) {
   return props => (

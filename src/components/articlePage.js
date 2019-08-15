@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactMarkdown from 'react-markdown';
-import Loading from './loading-tmp';
-import GradientHeader from './gradientHeader-tmp';
-import Blog from '../utils/blog-tmp';
+import Loading from './loading';
+import GradientHeader from './gradientHeader';
+import Blog from '../utils/blog';
 
 class ArticlePage extends Component {
   constructor(props) {

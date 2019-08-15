@@ -1,9 +1,9 @@
 import React, {lazy, Suspense, Component} from 'react';
-import Loading from './loading-tmp';
+import Loading from './loading';
 import {Link} from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
-import Blog from '../utils/blog-tmp';
+import Blog from '../utils/blog';
 
 class BlogArticles extends Component {
   constructor(props) {

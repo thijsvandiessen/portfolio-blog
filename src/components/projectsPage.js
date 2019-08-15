@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import GradientHeader from './gradientHeader-tmp';
-import Projects from './projects-tmp';
+import GradientHeader from './gradientHeader';
+import Projects from './projects';
 
 
 class ProjectPage extends Component {

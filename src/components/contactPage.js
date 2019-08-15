@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import ContactForm from './contactForm-tmp';
-import GradientHeader from './gradientHeader-tmp';
+import ContactForm from './contactForm';
+import GradientHeader from './gradientHeader';
 
 
 class ContactPage extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import BlogArticles from './blogArticles-tmp';
-import GradientHeader from './gradientHeader-tmp';
+import BlogArticles from './blogArticles';
+import GradientHeader from './gradientHeader';
 
 class BlogPage extends Component {
   render() {

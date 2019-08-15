@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import GradientHeader from './gradientHeader-tmp';
-import Calculator from './calculator-tmp';
+import GradientHeader from './gradientHeader';
+import Calculator from './calculator';
 
 /**
  * A class that returns my calculator project

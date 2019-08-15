@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import GradientHeader from './gradientHeader-tmp';
+import GradientHeader from './gradientHeader';
 
 class ProjectSound extends Component {
   constructor(props) {
