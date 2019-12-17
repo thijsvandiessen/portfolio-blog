@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import GradientHeader from './gradientHeader-tmp';
+import React, {Component} from 'react';
+import GradientHeader from './gradientHeader';
 
 class ProjectTodo extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       tasks: [],
@@ -17,30 +16,23 @@ class ProjectTodo extends Component {
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.crossItem = this.crossItem.bind(this);
-
   }
 
   componentDidMount() {
-
     if (localStorage.tasks) {
       this.setState({
-        tasks: JSON.parse(localStorage.getItem("tasks"))
-      })
+        tasks: JSON.parse(localStorage.getItem('tasks')),
+      });
     }
   }
 
   storeTasks() {
-
     if (this.state.tasks.length === 0) {
-      localStorage.clear()
-    }
-
-    else if (this.state.tasks.length > 0) {
+      localStorage.clear();
+    } else if (this.state.tasks.length > 0) {
       // store todo list
-      localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
-
+      localStorage.setItem('tasks', JSON.stringify(this.state.tasks));
     }
-
   }
 
 
@@ -50,16 +42,14 @@ class ProjectTodo extends Component {
     // if empty
     if (!this.state.currentItem) return;
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       tasks: [...prevState.tasks, this.state.currentItem],
       currentItem: null,
       value: '',
-    }), () => this.storeTasks())
-
+    }), () => this.storeTasks());
   }
 
   handleTask(event) {
-
     // store extra metadata too
     this.setState({
       value: event.target.value,
@@ -67,13 +57,11 @@ class ProjectTodo extends Component {
         text: event.target.value,
         date: new Date(),
         checked: false,
-      }
+      },
     });
-
   };
 
   deleteTask(idx) {
-
     // make a separate copy of the array
     const tasks = [...this.state.tasks];
 
@@ -81,13 +69,11 @@ class ProjectTodo extends Component {
     tasks.splice(idx, 1);
 
     // update state
-    this.setState({ tasks: tasks },
-      () => this.storeTasks());
-
+    this.setState({tasks: tasks},
+        () => this.storeTasks());
   }
 
   crossItem(idx) {
-
     // make a separate copy of the array
     const tasks = [...this.state.tasks];
 
@@ -95,14 +81,12 @@ class ProjectTodo extends Component {
     tasks[idx].checked = !tasks[idx].checked;
 
     // update state
-    this.setState({ tasks: tasks },
-      () => this.storeTasks());
-
+    this.setState({tasks: tasks},
+        () => this.storeTasks());
   }
 
 
   render() {
-
     const heading = {
       title: 'My to do app',
       subTitle: 'What happends when I want to create a to do app with React?',
@@ -145,7 +129,6 @@ class ProjectTodo extends Component {
 
       </main>
     );
-
   };
 };
 

@@ -13,7 +13,7 @@ export default function lazyLoad() {
             target.src = target.dataset.src;
             target.removeAttribute('data-src');
             imageObserver.unobserve(target);
-          }
+          },
           );
     });
 

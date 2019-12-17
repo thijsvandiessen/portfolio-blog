@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import lazyLoad from '../utils/lazyLoad';
 
-import ScrollToTop from './scrollToTop-tmp';
-import TopNav from './topNav-tmp';
-import Navigation from './navigation-tmp';
-import Routes from './routes-tmp';
-import Footer from './footer-tmp';
+import ScrollToTop from './scrollToTop';
+import TopNav from './topNav';
+import Navigation from './navigation';
+import Routes from './routes';
+import Footer from './footer';
 
 class App extends Component {
-
   componentDidMount() {
-
     // lazyload images
-    lazyLoad()
+    lazyLoad();
   }
 
   render() {

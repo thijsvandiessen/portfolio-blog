@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import GradientHeader from './gradientHeader-tmp';
+import React, {Component} from 'react';
+import GradientHeader from './gradientHeader';
 
 class ProjectSound extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.canvas = React.createRef();
 
@@ -20,21 +19,18 @@ class ProjectSound extends Component {
     this.handleTune = this.handleTune.bind(this);
     this.handleWave = this.handleWave.bind(this);
     this.tick = this.tick.bind(this);
-
   }
 
   play() {
-
     // is the Web Audio API supported?
     if (!window.AudioContext && !window.webkitAudioContext) {
-      alert("Sorry, but the Web Audio API is not supported by your browser. The latest version of Google Chrome and Mozilla Firefox support the AudioContext API");
+      alert('Sorry, but the Web Audio API is not supported by your browser. The latest version of Google Chrome and Mozilla Firefox support the AudioContext API');
 
       return;
     };
 
     // is there a sound
     if (!this.state.sound) {
-
       let audioCtx;
 
       // create web audio api context
@@ -42,14 +38,13 @@ class ProjectSound extends Component {
         webkitAudioContext = window.webkitAudioContext;
         audioCtx = new webkitAudioContext();
       } else {
-
         // AudioContext = window.AudioContext || window.webkitAudioContext;
         audioCtx = new AudioContext();
       }
 
       // safari bug
       if (audioCtx === null) {
-        alert("Do not click like a maniac, reload to fix this bug.");
+        alert('Do not click like a maniac, reload to fix this bug.');
         return;
       }
 
@@ -57,7 +52,7 @@ class ProjectSound extends Component {
       const oscillator = audioCtx.createOscillator();
 
       // we need to store this node to stop it
-      this.setState({ node: oscillator });
+      this.setState({node: oscillator});
 
       // create gain node to modify the volume
       const gainNode = audioCtx.createGain();
@@ -87,17 +82,13 @@ class ProjectSound extends Component {
 
       // draw sinewave
       this.draw();
-
-    }
-
-    else {
+    } else {
       // stop this node
       this.state.node.stop();
     }
 
     // let us know that there is sound or not
-    this.setState({ sound: !this.state.sound });
-
+    this.setState({sound: !this.state.sound});
   };
 
   tick() {
@@ -121,7 +112,7 @@ class ProjectSound extends Component {
     const sliceWidth = (width * 1) / audioData.length;
 
     context.lineWidth = 2;
-    context.strokeStyle = "hsla(240, 90%, 50%, 1)";
+    context.strokeStyle = 'hsla(240, 90%, 50%, 1)';
     context.clearRect(0, 0, width, amplitude);
 
     context.beginPath();
@@ -139,7 +130,7 @@ class ProjectSound extends Component {
   }
 
   handleTune(event) {
-    this.setState({ frequency: event.target.value });
+    this.setState({frequency: event.target.value});
 
     // modify the sound frequency if there is any
     if (this.state.node === null) return;
@@ -147,7 +138,7 @@ class ProjectSound extends Component {
   };
 
   handleWave(event) {
-    this.setState({ waveForm: event.target.value });
+    this.setState({waveForm: event.target.value});
 
     // modify the sound waveForm if there is any
     if (this.state.node === null) return;
@@ -155,7 +146,6 @@ class ProjectSound extends Component {
   }
 
   render() {
-
     const heading = {
       title: this.state.frequency + ' hertz to tune your instrument',
       subTitle: 'Or modify this sound with the slider beneath',
@@ -195,7 +185,6 @@ class ProjectSound extends Component {
         <canvas ref={this.canvas}></canvas>
       </main>
     );
-
   };
 };
 

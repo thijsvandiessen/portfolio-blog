@@ -5,6 +5,6 @@ import Loading from './Loading';
 
 test('It renders', () => {
   const component = renderer.create(
-    <Loading />,
+      <Loading />,
   );
 });
