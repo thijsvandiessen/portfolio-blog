@@ -16,8 +16,10 @@ app.use(webpackDevMiddleware(compiler, {
 
 
 // Serve the files.
-app.listen(port, () => console.log(`Example app listening on port ${port}!\nGo to http://localhost:${port}\n`
-));
+app.listen(port, () => console.log(`
+Example app listening on port ${port}!\n
+Go to http://localhost:${port}\n
+`));
 
 // // TODO: http2
 

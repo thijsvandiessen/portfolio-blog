@@ -1,7 +1,5 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -10,9 +8,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = merge(common, {
-
   mode: 'production',
-
   module: {
     rules: [
       {
@@ -26,9 +22,7 @@ module.exports = merge(common, {
               publicPath: './'
             }
           },
-
           'css-loader',
-
           {
             // autoprefix
             loader: 'postcss-loader',
@@ -45,9 +39,7 @@ module.exports = merge(common, {
   optimization: {
     // Tree shaking
     usedExports: true,
-
     minimizer: [
-
       // minify js
       new UglifyJsPlugin({
         uglifyOptions: {
@@ -56,23 +48,18 @@ module.exports = merge(common, {
           }
         }
       }),
-
       // minify css
       new OptimizeCSSAssetsPlugin()
     ],
   },
 
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-
     new MiniCssExtractPlugin({
       filename: '[name].[hash:8].css',
       chunkFilename: "[id].[hash:8].css"
     }),
-
     // generate a service worker
     new WorkboxPlugin.GenerateSW({
-
       // Exclude images from the precache
       exclude: [/\.(?:png|jpg|jpeg|svg|webp)$/]
     })
