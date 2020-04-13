@@ -34,7 +34,6 @@ function LazyLoad(Component) {
 }
 
 class Routes extends Component {
-
   render() {
     return (
       <Switch>
