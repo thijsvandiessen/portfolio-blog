@@ -244,47 +244,47 @@ webpSupportCheck() {
                 <a href="../assets/IMG_1790.jpg"
                   title="Open this image of Rydal Cave, Lake District">
                   <img
-                    src={images[Object.keys(images)[0]]}
-                    data-src={images[Object.keys(images)[1]]}
+                    src={images[Object.keys(images)[0]].default}
+                    data-src={images[Object.keys(images)[1]].default}
                     alt="Rydal Cave, a stone quarry in the Lake District"
                     title="Rydal Cave, Lake District"
                   />
                 </a>
                 <a href="../assets/IMG_2543.jpg" title="Open this image of Buttermere and Crummock Water, Lake District">
                   <img
-                    src={images[Object.keys(images)[2]]}
-                    data-src={images[Object.keys(images)[3]]}
+                    src={images[Object.keys(images)[2]].default}
+                    data-src={images[Object.keys(images)[3]].default}
                     alt="Buttermere and Crummock Water from the mountains"
                     title="Buttermere and Crummock Water, Lake District"
                   />
                 </a>
                 <a href="../assets/IMG_4442.jpg" title="Open this image of the Antelope Canyon">
                   <img
-                    src={images[Object.keys(images)[4]]}
-                    data-src={images[Object.keys(images)[5]]}
+                    src={images[Object.keys(images)[4]].default}
+                    data-src={images[Object.keys(images)[5]].default}
                     alt="The lower Antelope Canyon in Arizona"
                     title="Antelope Canyon in the Navajo Nation. This sandstone slot canyon is renowned for its undulating angles & light shafts."
                   />
                 </a>
                 <a href="../assets/IMG_4468.jpg" title="Open image Sunrise at Zion, a detail from the Patriarchs.">
-                  <img src={images[Object.keys(images)[6]]}
-                    data-src={images[Object.keys(images)[7]]}
+                  <img src={images[Object.keys(images)[6]].default}
+                    data-src={images[Object.keys(images)[7]].default}
                     alt="Detail of the Patriarchs at sunrise. An impressive sandstone cliff at Zion National Park."
                     title="Sunrise at Zion, a detail from the Patriarchs."
                   />
                 </a>
                 <a href="../assets/IMG_5358.jpg" title="Open this image of a Mule Deer at Bryce National Park">
                   <img
-                    src={images[Object.keys(images)[8]]}
-                    data-src={images[Object.keys(images)[9]]}
+                    src={images[Object.keys(images)[8]].default}
+                    data-src={images[Object.keys(images)[9]].default}
                     alt="A close up from a young Mule Deer at Bryce National Park"
                     title="A Mule Deer at Bryce National Park"
                   />
                 </a>
                 <a href="../assets/IMG_5921.jpg" title="Open this image of me, casually looking into the Grand Canyon">
                   <img
-                    src={images[Object.keys(images)[10]]}
-                    data-src={images[Object.keys(images)[11]]}
+                    src={images[Object.keys(images)[10]].default}
+                    data-src={images[Object.keys(images)[11]].default}
                     alt="Standing on a rock in the Grand Canyon at sunrise."
                     title="Casually looking into the Grand Canyon"
                   />
