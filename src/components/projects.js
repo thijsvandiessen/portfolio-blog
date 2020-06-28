@@ -15,7 +15,7 @@ class Projects extends Component {
         <div>
           <h2>This portfolio</h2>
           <p>I started to play with React and Webpack and then this happend.
-            I first wanted to create a blog with articlesm written in Markdown stored somewhere else. So I did.</p>
+            I first wanted to create a simple headless blog with articles written in Markdown. So I did.</p>
           <Link to="my-writings" tite="Read my articles written in Markdown">
             Read more...
           </Link>

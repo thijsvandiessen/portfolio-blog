@@ -55,7 +55,7 @@ class AboutPage extends Component {
             <h2>My hobbies</h2>
             <p>
               I really love classical music. Since I was young I played the
-              violin, but now I play the Double Bass. A much bigger and practical
+              violin, but now I play the double bass. A much bigger and practical
               instrument. I play in a lot of orchestras every week where I also do some publicity related work.
             </p>
             <p>I further like to travel, hike and take cool pictures.</p>
