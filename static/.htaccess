@@ -1,11 +1,19 @@
 ####FORCEHTTPS_HEADER####
 RewriteEngine on
 
-#RULE:vandiessen.com
+# RULE:vandiessen.com
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP_HOST} ^(www\.)?vandiessen.com$
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [last,R=301]
 ####FORCEHTTPS_TAILER####
+
+# react router fix 
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule . /index.html [L]
 
 ####CUSTOM_HEADER####
 Options -MultiViews
@@ -39,19 +47,10 @@ RewriteRule ^ index.html [QSA,L]
   Header append Vary Accept env=REDIRECT_accept
 </IfModule>
 
-# # 2 DAYS cache for webp
-# <FilesMatch "\.(webp)$">
-#   Header set Cache-Control "max-age=172800, public"
-# </FilesMatch>
-
-####CUSTOM_TAILER####
-
 ####CHARSET_HEADER####
 AddDefaultCharset utf-8
 ####CHARSET_TAILER####
 
-####ERROR_HEADER####
-####ERROR_TAILER####
 
 # set the MIME type of the .webp images to image/webp
 AddType image/webp .webp
