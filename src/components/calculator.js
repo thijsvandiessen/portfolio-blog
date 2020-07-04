@@ -172,13 +172,13 @@ class Calculator extends Component {
     const a = parseFloat(this.state.firstNumber);
     const b = parseFloat(this.state.secondNumber);
 
-    if (this.state.operator === 'add') {
+    if (this.state.operator === ' + ') {
       this.answer(calc.add(a, b));
-    } else if (this.state.operator === 'subtract') {
+    } else if (this.state.operator === ' - ') {
       this.answer(calc.subtract(a, b));
-    } else if (this.state.operator === 'multiply') {
+    } else if (this.state.operator === ' * ') {
       this.answer(calc.multiply(a, b));
-    } else if (this.state.operator === 'divide') {
+    } else if (this.state.operator === ' / ') {
       this.answer(calc.divide(a, b));
     }
   }
@@ -191,10 +191,15 @@ class Calculator extends Component {
   answer(ans) {
     // convert to string
     let num = ans;
-    if (typeof ans === 'number') num = ans.toString();
+    if (typeof ans === 'number') {
+      num = ans.toPrecision(10).toString();
+      parseFloat(num).toString()
+    }
+
+    
 
     this.setState(() => ({
-      firstNumber: num,
+      firstNumber: num < Number.MAX_SAFE_INTEGER ? parseFloat(num).toString() : 'Number toooo big',
       secondNumber: null,
       operator: null,
     }));
@@ -208,11 +213,13 @@ class Calculator extends Component {
     return (
       <div className="calculator__app">
         <div className="calculator__display">
-          <span>{this.state.firstNumber} </span>
-          {this.state.operator}
-          {this.state.secondNumber >= 0 &&
-            <span> {this.state.secondNumber}</span>
-          }</div>
+          <p>
+            <span>{this.state.firstNumber < Number.MAX_SAFE_INTEGER ? this.state.firstNumber : 'Number toooo big'} </span>
+            <span> {this.state.operator} </span>
+            {this.state.secondNumber >= 0 &&
+              <span> {this.state.secondNumber < Number.MAX_SAFE_INTEGER ? this.state.secondNumber : 'Number toooo big'}</span>}
+          </p>
+        </div>
         <div className="calculator__keys">
           <div className="calculator__numbers">
             <button value="7">7</button>
@@ -230,10 +237,10 @@ class Calculator extends Component {
           </div>
           <div className="calculator__operators">
             <button value="clear">C</button>
-            <button value="divide">÷</button>
-            <button value="multiply">&times;</button>
-            <button value="subtract">-</button>
-            <button value="add">+</button>
+            <button value=" / ">÷</button>
+            <button value=" * ">&times;</button>
+            <button value=" - ">-</button>
+            <button value=" + ">+</button>
           </div>
         </div>
       </div>

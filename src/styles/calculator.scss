@@ -34,6 +34,15 @@
   height: 5rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  justify-content: flex-end;
+
+  p {
+    display: flex;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .calculator__numbers {

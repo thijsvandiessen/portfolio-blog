@@ -13,7 +13,7 @@ class ProjectCalculator extends Component {
   render() {
     const heading = {
       title: 'My react calculator',
-      subTitle: 'What happens when I want to create a calculator with React?',
+      subTitle: 'Floating-point arithmetic is hard.',
     };
 
     return (
