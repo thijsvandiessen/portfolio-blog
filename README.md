@@ -31,6 +31,7 @@ openssl req -nodes -new -x509 -keyout server.key -out server.cert
 - Uses the latest JavaScript syntax
 - And an experimental [dynamic import syntax](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import) to create small chunks. This improves the performance.
 - Testing with Jest
+- webpack bundle analyzer
 
 ## Todo
 
