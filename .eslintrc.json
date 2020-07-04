@@ -8,6 +8,7 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
+    "allowImportExportEverywhere": true,
     "ecmaFeatures": {
       "jsx": true
     },

@@ -1,6 +1,5 @@
 /* eslint-disable require-jsdoc */
-
-export default function lazyLoad() {
+export default function lazyLoadImages() {
   // select all lazy images and put them in an array
   const images = [].slice.call(document.querySelectorAll('img[data-src]'));
 

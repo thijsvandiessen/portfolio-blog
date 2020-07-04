@@ -1,29 +1,45 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import lazyLoad from '../utils/lazyLoad';
+import React, { Component, Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import lazyLoadImages from '../utils/lazyLoadImages';
 
 import ScrollToTop from './scrollToTop';
-import TopNav from './topNav';
-import Navigation from './navigation';
-import Routes from './routes';
-import Footer from './footer';
+
+const TopNav = React.lazy(() => import(
+  /* webpackChunkName: 'topNav' */ "./topNav"));
+
+const Navigation = React.lazy(() => import(
+  /* webpackChunkName: 'navigation' */ "./navigation"));
+
+const Routes = React.lazy(() => import(
+  /* webpackChunkName: 'routes' */ "./routes"));
+
+const Footer = React.lazy(() => import(
+  /* webpackChunkName: 'footer' */ "./footer"));
 
 class App extends Component {
   componentDidMount() {
     // lazyload images
-    lazyLoad();
+    lazyLoadImages();
   }
 
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <ScrollToTop>
-          <TopNav />
-          <Navigation />
-          <Routes />
-          <Footer />
+          <Suspense fallback={<div>...</div>}>
+            <TopNav />
+          </Suspense>
+          <Suspense fallback={<div>.</div>}>
+            <Navigation />
+          </Suspense>
+          <Suspense fallback={<div>.</div>}>
+            <Routes />
+          </Suspense>
+          <Suspense fallback={<footer>Designed and developed by Thijs van Diessen</footer>}>
+            <Footer />
+          </Suspense>
         </ScrollToTop>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

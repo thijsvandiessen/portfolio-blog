@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, Component } from 'react';
+import React, { lazy, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Loading from './loading';
+import LazyLoad from './lazyLoad';
 
 const Home = lazy(() => import(
   /* webpackChunkName: 'home' */ "./homePage"));
@@ -24,14 +24,6 @@ const Contact = lazy(() => import(
   /* webpackChunkName: 'contact' */ "./contactPage"));
 const NoMatch = lazy(() => import(
   /* webpackChunkName: 'noMatch' */ "./noMatch"));
-
-function LazyLoad(Component) {
-  return props => (
-    <Suspense fallback={<Loading />}>
-      <Component {...props} />
-    </Suspense>
-  );
-}
 
 class Routes extends Component {
   render() {

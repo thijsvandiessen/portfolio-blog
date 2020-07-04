@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import GradientHeader from './gradientHeader';
-import lazyLoad from '../utils/lazyLoad';
+import lazyLoad from '../utils/lazyLoadImages';
 import {Link} from 'react-router-dom';
 
 /**
