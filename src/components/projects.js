@@ -21,13 +21,6 @@ class Projects extends Component {
           </Link>
         </div>
         <div>
-          <h2>My older portfolio</h2>
-          <p>My first portfolio with some older projects. Written in PHP.</p>
-          <a href="http://thijsvandiessen.nl" title="Discover my old portfolio">
-            Read more...
-          </a>
-        </div>
-        <div>
           <h2>Making a oscillator</h2>
           <p>A simple oscillator that I use to tune my violin or double bass.
           In most orchestras 442 hertz is the A, normaly this is 440 hertz. This simply because the woodwinds like it this way. And we like it if the woodwinds are in tune.</p>
