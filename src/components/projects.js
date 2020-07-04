@@ -36,9 +36,9 @@ class Projects extends Component {
           </Link>
         </div>
         <div>
-          <h2>Lazy loading images to improve SEO</h2>
+          <h2>Lazy loading images</h2>
           <p>If you implement lazy loading, does it actually attract more traffic? I implemented and documented my optimizations.</p>
-          <Link to="projects/lazy-loading-images-to-improve-seo" title="Read about my lazyload implementation and other image optimizations">
+          <Link to="projects/lazy-loading-images-to-make-your-site-fast" title="Read about my lazyload implementation and other image optimizations">
             Read more...
           </Link>
         </div>

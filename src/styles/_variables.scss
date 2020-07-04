@@ -1,4 +1,4 @@
-@import 'normalize';
+@import "normalize";
 
 :root {
   // Colors
@@ -6,9 +6,9 @@
   --primary-light: hsla(240, 90%, 80%, 1);
   --primary-dark: hsla(240, 90%, 40%, 1);
 
-  --secondary: hsla(340,90%,60%, 1);
+  --secondary: hsla(340, 90%, 60%, 1);
 
- // Whites
+  // Whites
   --white: hsla(0, 0%, 97%, 1);
   --white-transparant: hsla(0, 0%, 97%, 0.9);
 
@@ -19,6 +19,7 @@
 
   // Blacks
   --black: hsla(0, 0%, 10%, 1);
+
 }
 
 // spacing
@@ -42,11 +43,14 @@ $narrow: 30rem;
 $slender: 50rem;
 $wide: 1200px;
 
-
 $tall: 25rem;
 
 // keyframes effects
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

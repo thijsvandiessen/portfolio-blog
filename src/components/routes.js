@@ -50,11 +50,11 @@ class Routes extends Component {
           component={LazyLoad(ProjectTodo)}
         />
         <Redirect
-          from="/projects/image-optimizations-to-improve-seo"
-          to="/projects/lazy-loading-images-to-improve-seo"
+          from="/projects/image-optimizations"
+          to="/projects/lazy-loading-images-to-make-your-site-fast"
         />
         <Route
-          path="/projects/lazy-loading-images-to-improve-seo"
+          path="/projects/lazy-loading-images-to-make-your-site-fast"
           exact
           component={LazyLoad(ProjectImageOptimizations)}
         />

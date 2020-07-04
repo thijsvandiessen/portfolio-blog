@@ -1,6 +1,6 @@
-import React, { Component, setState } from 'react';
-import GradientHeader from './gradientHeader';
-import lazyLoad from '../utils/lazyLoadImages';
+import React, { Component, setState } from "react";
+import GradientHeader from "./gradientHeader";
+import lazyLoad from "../utils/lazyLoadImages";
 
 /**
  * A class that returns my lazy load project description
@@ -20,29 +20,30 @@ class ProjectImageOptimizations extends Component {
   }
 
   /**
-  * load the right images
-  */
+   * load the right images
+   */
   componentDidMount() {
     this.checkWebp(this.import);
   }
 
   /**
-  * It lazyloads the images
-  */
+   * It lazyloads the images
+   */
   componentDidUpdate() {
     lazyLoad();
   }
 
   /**
-  * checkWebp lossy image
-  * @return {void}
-  */
+   * checkWebp lossy image
+   * @return {void}
+   */
   checkWebp(callback) {
-    const testImage = 'UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+    const testImage =
+      "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA";
     const img = new Image();
 
     img.onload = () => {
-      const result = (img.width > 0) && (img.height > 0);
+      const result = img.width > 0 && img.height > 0;
       callback(result);
     };
 
@@ -53,34 +54,31 @@ class ProjectImageOptimizations extends Component {
     img.src = "data:image/webp;base64," + testImage;
   }
 
-
   /**
-  * Callback function - Imports the right images
-  * @param {boolean} result - webp or jpg
-  * @return {void} sets the state
-  */
+   * Callback function - Imports the right images
+   * @param {boolean} result - webp or jpg
+   * @return {void} sets the state
+   */
   import(result) {
     const images = {};
 
-    function importAll (r) {
-      r.keys().forEach((key, index) => images[index] = r(key));
+    function importAll(r) {
+      r.keys().forEach((key, index) => (images[index] = r(key)));
     }
 
     // if the browser supports webp
     if (result === true) {
       importAll(
-        require.context('../images/portfolio/', false, /\.(webp)$/, 'sync')
-      );
-    } 
-
-    // no webp support
-    if (result === false) { 
-      importAll(
-        require.context('../images/portfolio/', false, /\.(jpg)$/, 'sync')
+        require.context("../images/portfolio/", false, /\.(webp)$/, "sync")
       );
     }
 
-    console.log(images)
+    // no webp support
+    if (result === false) {
+      importAll(
+        require.context("../images/portfolio/", false, /\.(jpg)$/, "sync")
+      );
+    }
 
     this.setState(() => ({
       images,
@@ -88,13 +86,14 @@ class ProjectImageOptimizations extends Component {
   }
 
   /**
-  * The article
-  * @return {object} the article
-  */
+   * The article
+   * @return {object} the article
+   */
   render() {
     const heading = {
-      title: 'Lazy loading images to improve SEO',
-      subTitle: 'I implemented and documented some best practises',
+      title: "Lazy loading images to make your site fast",
+      subTitle:
+        "I implemented and documented some best practises to create a fast web experience!",
     };
 
     const images = this.state.images;
@@ -104,30 +103,65 @@ class ProjectImageOptimizations extends Component {
         <article>
           <GradientHeader heading={heading} />
           <div className="content-container">
+            <p>
+              I’m a bit obsessed about speed, performance and accessibility.
+              Creating great and fast experiences is something I really like.
+              Hence this article, how to implement lazy loading with great
+              support? And can we do something extra?
+            </p>
 
-            <p>If you implement lazy loading, does it actually attract more traffic? I implemented and documented my optimizations. I optimized my images with a descriptive text and implemented lazy loading with a fall back. I describe here my technical implementation but did not forget the bigger picture. If you want to be found, you should be found because of your high quality and original content, not because you lazy loaded an image.</p>
+            <h2>Native browser lazy-loading</h2>
 
-            <p>But optimizations help. If you naturally describe what is in your image, without any keyword stuffing, then people can find your image. There are a couple of ways that you can include text to an image. The most important one is alt text. But a title and caption can also help the user experience.</p>
+            <p>
+              The best solution I think, no bytes are sent if there is no image
+              to show to the user.
+            </p>
 
-            <p>An other optimization I implemented is lazy loading. The web needs to be fast and images need to be small but do they really need to be lazy loaded?</p>
+            <p>
+              Unfortunately only{" "}
+              <a href="https://caniuse.com/#feat=loading-lazy-attr">
+                some browsers
+              </a>{" "}
+              support this native browser lazy-loading attribute. This attribute
+              can simply be added to <code>{`<img>`}</code> elements. Then an
+              image will be loaded when it is needed.
+            </p>
 
-            <p>I found out that it depends. Images above the fold don't need to be lazy loaded. It ruins also the user experience when everything seem to be loading super slow. But images below the fold don't need to be loaded right away.</p>
+            <p>
+              To prevent a layout shift you need to specify dimensions of your
+              lazy image. This gives visual stability. A cumulative layout shift
+              is also a core web vital metric.
+            </p>
 
-            <p>That is why the images on this page below the fold are lazy loaded. If your browser support it, then the images are also encoded in WebP, a next gen image format. I try to describe here and implement as much best practises and optimizations.</p>
+            <p>Example:</p>
 
-            <h2>Image sitemap</h2>
+            <figure>
+              <code>
+                <pre>{`
+<img src="/image.jpg" alt="..." loading="lazy" width="100" height="100" >
+            `}</pre>
+              </code>
+              <figcaption>The loading attribute in use</figcaption>
+            </figure>
 
-            <p>To be sure that your images are indexed by search engens you can expose a seperate image sitemap. In an image sitemap you can also include extra information like geo location data.</p>
+            <h2>Lazy loading with the IntersectionObserver API</h2>
 
-            <p>Single page applications can be difficult to crawl. So including a sitemap guarantees that your site is going to be indexed. You can submit multiple sitemaps in Google Search Console and also monitor your indexed pages.</p>
+            <p>
+              The intersection observer API can simply observe when an element
+              or image is visible in the viewport. I store the image url in a
+              data-src attribute and put that value in the src attribute when
+              the image should be visible.
+            </p>
 
-            <h2>My lazy loading implementation</h2>
-
-            <p>I was looking for a simple implementation and came accross multiple shady plugins and really old implementations. Then I found a simple solution by Google. They recommended the use of the intersection observer API.</p>
-
-            <p>The intersection observer API can simply observe when an image is visible in the viewport. I store the image url in a data-src attribute and put that value in the src when the image should be visible.</p>
-
-            <p>The IntersectionObserver is unfortunately a new API. And thus only supported by modern browsers. This does not mean that you should not use this API. Performance benefits are important, and this API is a lot faster than my other implementation for older browsers.</p>
+            <p>
+              This API is unfortunately{" "}
+              <a href="https://caniuse.com/#feat=intersectionobserver">
+                only supported by modern browsers.
+              </a>{" "}
+              This does not mean that you should not use this API. Performance
+              benefits are important, and this API is a lot faster than my other
+              implementation for older browsers.
+            </p>
 
             <figure>
               <code>
@@ -152,10 +186,20 @@ if ("IntersectionObserver" in window) {
               </figcaption>
             </figure>
 
-            <h2>IntersectionObserver fallback</h2>
-            <p>As I mentioned, this IntersectionObserver API is not supported by every browser. So I needed a intersection observer fallback. With the <strong>getBoundingClientRect API</strong> you can discover when an element is in the viewport too. But you have to use event listeners to scroll, resize and orientationchange. So the performance of the IntersectionObserver implementation is a lot better.</p>
+            <h2>IntersectionObserver fallback for older browsers</h2>
+            <p>
+              As I mentioned, this IntersectionObserver API is not supported by
+              every browser. So I needed a intersection observer fallback. With
+              the <strong>getBoundingClientRect API</strong> you can discover
+              when an element is in the viewport too. But you have to use event
+              listeners to scroll, resize and orientationchange. So the
+              performance of the IntersectionObserver implementation is a lot
+              better.
+            </p>
 
-            <figure><code><pre>{`
+            <figure>
+              <code>
+                <pre>{`
 function oldSchoolLazyLoad() {
   images.forEach((image) => {
 
@@ -175,17 +219,64 @@ window.addEventListener("orientationchange", oldSchoolLazyLoad);
 
 oldSchoolLazyLoad();
           `}</pre>
-            </code>
-            <figcaption>My lazy loading implementation for older browsers.</figcaption>
+              </code>
+              <figcaption>
+                My lazy loading implementation for older browsers.
+              </figcaption>
             </figure>
 
+            <h2>Lazy CSS background images</h2>
+
+            <p>
+              CSS resources are downloaded when the DOM and CSSOM trees are
+              combined.
+            </p>
+
+            <p>
+              So you can change the render tree when you need another CSS
+              backbground image. You can even use this method to serve WebP images.
+            </p>
+
+            <figure>
+              <code>
+                <pre>{`
+// CSS
+.lazy-background-image {
+  background-image: url("/placehoder-header.jpg"); /* A placeholder image */
+}
+
+.lazy-background-image.visible {
+  background-image: url("/header.jpg"); /* The original image */
+}
+
+.lazy-background-image.visible.webp-support {
+  background-image: url("/header.webp"); /* If also the class webp-support is added */
+}
+
+// HTML
+<div class="lazy-background-image visible">
+          `}</pre>
+              </code>
+              <figcaption>
+                An HTML element with a CSS placeholder background image
+              </figcaption>
+            </figure>
+
+            <p>You only need to alter a class with Javascript.</p>
+
             <h2>Support when Javascript is disabled</h2>
-            <p>Lazy loading images is done with Javascript. When there is no Javascript, simply no images are loaded. So if if you want lazy loading and see images when Javascript is not enabled you have to do something extra. When Javascript is disabled you can add a noscript version of your image that you want to display.</p>
+            <p>
+              When Javascript is disabled and you lazy load images with
+              Javascript, simply no images are loaded. So if you lazy load with
+              Javascript you have to do something extra. You can simply add a
+              noscript version of your image to your HTML that you want to
+              display.
+            </p>
             <figure>
               <code>
                 <pre>{`
 <noscript>
-  <img alt="" src="image.jpg"/>
+  <img alt="" src="/image.jpg"/>
 </noscript>
           `}</pre>
               </code>
@@ -194,13 +285,57 @@ oldSchoolLazyLoad();
               </figcaption>
             </figure>
 
-            <h2>My implementation of WebP</h2>
+            <h2>My implementation of WebP, sending less bytes over the wire</h2>
 
-            <p>Only some of the newest browsers support WebP. So you need to progressively enhance your website for those browsers.</p>
+            <p>
+              To optimize your site even further, you can serve smaller images
+              with the same resolution in this next gen webp format.
+            </p>
 
-            <p>To omit the hassle of changing every hard coded image I first used a rewrite rule in my htaccess configuration file. You can automatically serve a WebP version of your image if the browser supports it.</p>
+            <p>
+              Only modern browsers support WebP. So you need to progressively
+              enhance your website for those browsers.
+            </p>
 
-            <p>I implemented a client side check with a small lossy webp image.</p>
+            <p>
+              To omit the hassle of changing every hard coded image I first used
+              a rewrite rule in my htaccess configuration file. If the Accept
+              header contains image/webp you can serve a WebP version.
+            </p>
+
+            <figure>
+              <code>
+                <pre>{`
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Check if browser supports WebP images
+  RewriteCond %{HTTP_ACCEPT} image/webp
+
+  # Check if WebP replacement image exists
+  RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+
+  # Serve WebP image instead
+  RewriteRule (.+)\.(jpe?g|png)$ $1.webp [T=image/webp,E=REQUEST_image]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Vary: Accept for all the requests to jpeg and png
+  Header append Vary Accept env=REQUEST_image
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
+                `}</pre>
+              </code>
+              <figcaption>A hack to serve WebP images.</figcaption>
+            </figure>
+
+            <p>
+              I later implemented a client side check with a small lossy webp
+              image.
+            </p>
 
             <figure>
               <code>
@@ -223,61 +358,130 @@ webpSupportCheck(callback) {
               </figcaption>
             </figure>
 
+            <p>
+              A better way is to use a <code>{`<picture>`}</code> element. You
+              can simply serve all the options and the browser can choose.
+            </p>
+
+            <figure>
+              <code>
+                <pre>{`
+<picture>
+  <source srcset="/image.webp" type="image/webp">
+  <img src="/image.jpg" alt="">
+</picture>
+                `}</pre>
+              </code>
+              <figcaption>A nice way to serve WebP images</figcaption>
+            </figure>
+
             <h2>Further optimizations:</h2>
 
             <ul>
-              <li>I like to optimize the size for specific screens with the help of srcset to make the images also responsive.</li>
-              <li>A nice smooth blurry placeholder image.</li>
+              <li>
+                I like to optimize the size for specific screens with the help
+                of <code>srcset</code> to make the images also responsive. But I
+                don't like to create so many images.
+              </li>
+              <li>
+                To be sure that your images are indexed by search engines you
+                can expose a separate{" "}
+                <a href="https://support.google.com/webmasters/answer/178636">
+                  image sitemap
+                </a>
+                . In an image sitemap you can also include extra information
+                like geo location data.
+              </li>
             </ul>
 
-            <h2>An example gallery of lazy loading images</h2>
+            <h2>An example gallery of my WebP optimized lazy loading images</h2>
 
-            <p>Six images with each a tiny blurred version and a bigger version that loads a lot slower. Each image has also a WebP counterpart. Thus there are in total 24 images here.</p>
+            <p>
+              Six images with each a tiny blurred version and a bigger version
+              that loads a lot slower. Each image has also a WebP counterpart.
+              Thus there are in total 24 images here.
+            </p>
 
-            {images &&
+            {images && (
               <div className="gallery">
-                <a href="/assets/IMG_1790.jpg"
-                  title="Open this image of Rydal Cave, Lake District">
+                <a
+                  href="/assets/IMG_1790.jpg"
+                  title="Open this image of Rydal Cave, Lake District"
+                >
                   <img
+                    loading="lazy"
+                    width="800"
+                    height="1207"
                     src={images[Object.keys(images)[0]].default}
                     data-src={images[Object.keys(images)[1]].default}
                     alt="Rydal Cave, a stone quarry in the Lake District"
                     title="Rydal Cave, Lake District"
                   />
                 </a>
-                <a href="/assets/IMG_2543.jpg" title="Open this image of Buttermere and Crummock Water, Lake District">
+                <a
+                  href="/assets/IMG_2543.jpg"
+                  title="Open this image of Buttermere and Crummock Water, Lake District"
+                >
                   <img
+                    loading="lazy"
+                    width="800"
+                    height="358"
                     src={images[Object.keys(images)[2]].default}
                     data-src={images[Object.keys(images)[3]].default}
                     alt="Buttermere and Crummock Water from the mountains"
                     title="Buttermere and Crummock Water, Lake District"
                   />
                 </a>
-                <a href="/assets/IMG_4442.jpg" title="Open this image of the Antelope Canyon">
+                <a
+                  href="/assets/IMG_4442.jpg"
+                  title="Open this image of the Antelope Canyon"
+                >
                   <img
+                    loading="lazy"
+                    width="800"
+                    height="455"
                     src={images[Object.keys(images)[4]].default}
                     data-src={images[Object.keys(images)[5]].default}
                     alt="The lower Antelope Canyon in Arizona"
                     title="Antelope Canyon in the Navajo Nation. This sandstone slot canyon is renowned for its undulating angles & light shafts."
                   />
                 </a>
-                <a href="/assets/IMG_4468.jpg" title="Open image Sunrise at Zion, a detail from the Patriarchs.">
-                  <img src={images[Object.keys(images)[6]].default}
+                <a
+                  href="/assets/IMG_4468.jpg"
+                  title="Open image Sunrise at Zion, a detail from the Patriarchs."
+                >
+                  <img
+                    loading="lazy"
+                    width="800"
+                    height="800"
+                    src={images[Object.keys(images)[6]].default}
                     data-src={images[Object.keys(images)[7]].default}
                     alt="Detail of the Patriarchs at sunrise. An impressive sandstone cliff at Zion National Park."
                     title="Sunrise at Zion, a detail from the Patriarchs."
                   />
                 </a>
-                <a href="/assets/IMG_5358.jpg" title="Open this image of a Mule Deer at Bryce National Park">
+                <a
+                  href="/assets/IMG_5358.jpg"
+                  title="Open this image of a Mule Deer at Bryce National Park"
+                >
                   <img
+                    loading="lazy"
+                    width="800"
+                    height="533"
                     src={images[Object.keys(images)[8]].default}
                     data-src={images[Object.keys(images)[9]].default}
                     alt="A close up from a young Mule Deer at Bryce National Park"
                     title="A Mule Deer at Bryce National Park"
                   />
                 </a>
-                <a href="/assets/IMG_5921.jpg" title="Open this image of me, casually looking into the Grand Canyon">
+                <a
+                  href="/assets/IMG_5921.jpg"
+                  title="Open this image of me, casually looking into the Grand Canyon"
+                >
                   <img
+                    loading="lazy"
+                    width="800"
+                    height="490"
                     src={images[Object.keys(images)[10]].default}
                     data-src={images[Object.keys(images)[11]].default}
                     alt="Standing on a rock in the Grand Canyon at sunrise."
@@ -285,12 +489,12 @@ webpSupportCheck(callback) {
                   />
                 </a>
               </div>
-            }
+            )}
           </div>
         </article>
       </main>
     );
-  };
-};
+  }
+}
 
 export default ProjectImageOptimizations;

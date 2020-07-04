@@ -1,16 +1,10 @@
 // Typography, base styles
 
 body {
-
-  @import url('https://fonts.googleapis.com/css?family=Oswald|Raleway');
-
-
+  @import url('https://fonts.googleapis.com/css?family=Oswald|Raleway&display=swap');
   font-family: 'Raleway', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.9;
-
-  // Google fonts are optional...
-  font-display: optional;
-
+  font-display: swap;
 }
 
 main {
