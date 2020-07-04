@@ -35,21 +35,19 @@ class AboutPage extends Component {
             </p>
             <p>Also I know how to:</p>
             <ul>
-              <li>Setup my no sudo node environment</li>
-              <li>Create fancy automated Google Data Studio dashboards</li>
-              <li>Design prototypes and Photoshop experiences</li>
-              <li>Craft icons in Adobe Illustrator</li>
-              <li>Create interactive presenations or books in Adobe Indesign</li>
+              <li>Create fancy automated dashboards</li>
+              <li>Craft icons</li>
               <li>
-                Create websites and webpages with HTML, PHP, JavaScript, React and CSS
+                Create fancy fast websites and webpages with modern technologies
               </li>
               <li>Develop responsive and bulletproof HTML email templates</li>
             </ul>
             <h2>The future</h2>
             <p>
-              I have a lot of ambition and want to design and develop awesome and
-              better user experiences. With my creativity I like to help people,
-              which is why I wanted to become a more creative developer and designer in the first place. In the meanwhile I want to continue exploring and learning in order to come to new creative insights. Every day I'm doing nothing less than my very best.
+              I have a lot of ambition and want to design and develop awesome and better user experiences. 
+              With my creativity I like to help people, which is why I wanted to become a more creative developer 
+              and designer in the first place. In the meanwhile I want to continue exploring and learning in order 
+              to come to new creative insights. Every day I'm doing nothing less than my very best.
             </p>
 
             <h2>My hobbies</h2>

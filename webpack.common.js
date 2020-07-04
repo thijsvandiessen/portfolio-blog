@@ -71,16 +71,17 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|webp)$/,
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+        exclude: /(node_modules)/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'assets/'
+              outputPath: 'assets',
             },
-          }
-        ]
+          },
+        ],
       },
     ]
   },

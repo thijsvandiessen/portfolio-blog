@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component, setState } from 'react';
 import GradientHeader from './gradientHeader';
 import lazyLoad from '../utils/lazyLoadImages';
-import {Link} from 'react-router-dom';
 
 /**
  * A class that returns my lazy load project description
@@ -16,13 +15,15 @@ class ProjectImageOptimizations extends Component {
     this.state = {
       images: null,
     };
+
+    this.import = this.import.bind(this);
   }
 
   /**
   * load the right images
   */
   componentDidMount() {
-    this.checkWebp();
+    this.checkWebp(this.import);
   }
 
   /**
@@ -34,19 +35,24 @@ class ProjectImageOptimizations extends Component {
 
   /**
   * checkWebp lossy image
-  * 'import(result)' will be passed back the detection result
   * @return {void}
   */
-  checkWebp() {
-    const testImage = 'UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADs+JaQAA3AAAAAA';
+  checkWebp(callback) {
+    const testImage = 'UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
     const img = new Image();
-    img.src = 'data:image/webp;base64,' + testImage;
+
     img.onload = () => {
       const result = (img.width > 0) && (img.height > 0);
-      this.import(result);
+      callback(result);
     };
-    img.onerror = () => this.import(false);
+
+    img.onerror = () => {
+      callback(false);
+    };
+
+    img.src = "data:image/webp;base64," + testImage;
   }
+
 
   /**
   * Callback function - Imports the right images
@@ -54,40 +60,32 @@ class ProjectImageOptimizations extends Component {
   * @return {void} sets the state
   */
   import(result) {
-    let images;
+    const images = {};
+
+    function importAll (r) {
+      r.keys().forEach((key, index) => images[index] = r(key));
+    }
 
     // if the browser supports webp
-    if (result) {
-      images = this.importAll(require.context(
-          '../images/portfolio/',
-          false,
-          /\.(jpg)$/),
+    if (result === true) {
+      importAll(
+        require.context('../images/portfolio/', false, /\.(webp)$/, 'sync')
       );
-    } else {
-      images = this.importAll(require.context(
-          '../images/portfolio/',
-          false,
-          /\.(jpg)$/),
+    } 
+
+    // no webp support
+    if (result === false) { 
+      importAll(
+        require.context('../images/portfolio/', false, /\.(jpg)$/, 'sync')
       );
     }
 
-    this.setState({
-      images: images,
-    });
-  }
+    console.log(images)
 
-  /**
-  * Imports the files
-  * @param {object} files
-  * @return {object} the image files
-  */
-  importAll(files) {
-    const images = {};
-    files.keys().map((item, index) => {
-      return images[item.replace('./', '')] = files(item);
-    });
-    return images;
-  };
+    this.setState(() => ({
+      images,
+    }));
+  }
 
   /**
   * The article
@@ -162,15 +160,12 @@ function oldSchoolLazyLoad() {
   images.forEach((image) => {
 
     // if img is loaded return
-    if (image.src.substr(location.origin.length)
-    === image.dataset.src) return;
+    if (image.src.substr(location.origin.length) === image.dataset.src) return;
 
     // if the image is in the viewport, load the image
-    if (image.getBoundingClientRect().top <= window.innerHeight
-    && image.getBoundingClientRect().bottom >= 0) {
+    if (image.getBoundingClientRect().top <= window.innerHeight && image.getBoundingClientRect().bottom >= 0) {
       image.src = image.dataset.src;
     }
-
   })
 };
 
@@ -205,12 +200,12 @@ oldSchoolLazyLoad();
 
             <p>To omit the hassle of changing every hard coded image I first used a rewrite rule in my htaccess configuration file. You can automatically serve a WebP version of your image if the browser supports it.</p>
 
-            <p>But I had a problem. Google saw this as a redirection error in its mobile friendly test. To fix this issue I implemented a client side check with a small lossy webp image. But because images are loaded in a asynchronous way, other images you like to lazy load need to be loaded in the callback of this WebP support check.</p>
+            <p>I implemented a client side check with a small lossy webp image.</p>
 
             <figure>
               <code>
                 <pre>{`
-webpSupportCheck() {
+webpSupportCheck(callback) {
   // a lossy webp image
   const testImage = "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA";
   const img = new Image();
@@ -241,7 +236,7 @@ webpSupportCheck() {
 
             {images &&
               <div className="gallery">
-                <a href="../assets/IMG_1790.jpg"
+                <a href="/assets/IMG_1790.jpg"
                   title="Open this image of Rydal Cave, Lake District">
                   <img
                     src={images[Object.keys(images)[0]].default}
@@ -250,7 +245,7 @@ webpSupportCheck() {
                     title="Rydal Cave, Lake District"
                   />
                 </a>
-                <a href="../assets/IMG_2543.jpg" title="Open this image of Buttermere and Crummock Water, Lake District">
+                <a href="/assets/IMG_2543.jpg" title="Open this image of Buttermere and Crummock Water, Lake District">
                   <img
                     src={images[Object.keys(images)[2]].default}
                     data-src={images[Object.keys(images)[3]].default}
@@ -258,7 +253,7 @@ webpSupportCheck() {
                     title="Buttermere and Crummock Water, Lake District"
                   />
                 </a>
-                <a href="../assets/IMG_4442.jpg" title="Open this image of the Antelope Canyon">
+                <a href="/assets/IMG_4442.jpg" title="Open this image of the Antelope Canyon">
                   <img
                     src={images[Object.keys(images)[4]].default}
                     data-src={images[Object.keys(images)[5]].default}
@@ -266,14 +261,14 @@ webpSupportCheck() {
                     title="Antelope Canyon in the Navajo Nation. This sandstone slot canyon is renowned for its undulating angles & light shafts."
                   />
                 </a>
-                <a href="../assets/IMG_4468.jpg" title="Open image Sunrise at Zion, a detail from the Patriarchs.">
+                <a href="/assets/IMG_4468.jpg" title="Open image Sunrise at Zion, a detail from the Patriarchs.">
                   <img src={images[Object.keys(images)[6]].default}
                     data-src={images[Object.keys(images)[7]].default}
                     alt="Detail of the Patriarchs at sunrise. An impressive sandstone cliff at Zion National Park."
                     title="Sunrise at Zion, a detail from the Patriarchs."
                   />
                 </a>
-                <a href="../assets/IMG_5358.jpg" title="Open this image of a Mule Deer at Bryce National Park">
+                <a href="/assets/IMG_5358.jpg" title="Open this image of a Mule Deer at Bryce National Park">
                   <img
                     src={images[Object.keys(images)[8]].default}
                     data-src={images[Object.keys(images)[9]].default}
@@ -281,7 +276,7 @@ webpSupportCheck() {
                     title="A Mule Deer at Bryce National Park"
                   />
                 </a>
-                <a href="../assets/IMG_5921.jpg" title="Open this image of me, casually looking into the Grand Canyon">
+                <a href="/assets/IMG_5921.jpg" title="Open this image of me, casually looking into the Grand Canyon">
                   <img
                     src={images[Object.keys(images)[10]].default}
                     data-src={images[Object.keys(images)[11]].default}
