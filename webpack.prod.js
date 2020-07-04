@@ -3,6 +3,7 @@ const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // Workbox - plugin to create a simple service worker
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -54,6 +55,7 @@ module.exports = merge(common, {
   },
 
   plugins: [
+    new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[hash:8].css',
       chunkFilename: "[id].[hash:8].css"
