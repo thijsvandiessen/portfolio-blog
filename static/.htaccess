@@ -21,8 +21,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
 
 # One month cache for css, js, webp
+# one month: 86400
+# one year: 31536000
 <filesMatch ".(css|js|webp|png|jpg|jpeg)$">
-  Header set Cache-Control "max-age=86400, public"
+  Header set Cache-Control "max-age=31536000, public"
 </filesMatch>
 
 # # rewrite images to webp

@@ -26,16 +26,16 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ScrollToTop>
-          <Suspense fallback={<div>...</div>}>
+          <Suspense fallback={<header className="topNav" />}>
             <TopNav />
           </Suspense>
-          <Suspense fallback={<div>.</div>}>
+          <Suspense fallback={<nav className="navigation" />}>
             <Navigation />
           </Suspense>
-          <Suspense fallback={<div>.</div>}>
+          <Suspense fallback={<main />}>
             <Routes />
           </Suspense>
-          <Suspense fallback={<footer>Designed and developed by Thijs van Diessen</footer>}>
+          <Suspense fallback={<footer />}>
             <Footer />
           </Suspense>
         </ScrollToTop>

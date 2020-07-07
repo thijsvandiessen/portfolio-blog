@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import GradientHeader from './gradientHeader';
 import lazyLoad from '../utils/lazyLoadImages';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import tinyImage5921 from '../images/portfolio/IMG_5921-tiny.jpg';
 import image5921 from '../images/portfolio/IMG_5921.jpg';
 
@@ -61,6 +61,9 @@ class AboutPage extends Component {
             <p>If you like to know more about me, <Link to="/contact" title="send me an email">get in touch</Link>.</p>
             <div className="gallery">
               <img
+                loading="lazy"
+                width="800"
+                height="490"
                 src={tinyImage5921}
                 data-src={image5921}
                 alt="Standing on a rock in the Grand Canyon at sunrise."

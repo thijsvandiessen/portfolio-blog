@@ -4,6 +4,10 @@ const webpack = require('webpack');
 // to create dynamicly an html file with the right sources
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// A webpack plugin for automatically wiring up asynchronous (and other types) of JavaScript chunks 
+// using <link rel='preload'>. This helps with lazy-loading.
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
@@ -31,18 +35,31 @@ module.exports = {
       */
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      // inject: false,
-      hash: true,
+      // hash: true,
       title: "Hi I'm Thijs van Diessen, a more creative front end developer",
       template: './src/index.html',
       filename: 'index.html',
       favicon: './src/favicon.ico',
+      // inject: false,
       minify: {
         removeComments: true,
         collapseWhitespace: true
       },
     }),
+
     new webpack.HotModuleReplacementPlugin(),
+
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      include: 'initial',
+      as(entry) {
+        if (/\.css$/.test(entry)) return 'style';
+        if (/\.(woff|woff2)$/.test(entry)) return 'font';
+        if (/\.(png|svg|jpg|jpeg|gif|webp)$/.test(entry)) return 'image';
+        if (/\.js$/.test(entry)) return 'script';
+        return
+      }
+    }),
 
     // A static asset folder
     new CopyPlugin({

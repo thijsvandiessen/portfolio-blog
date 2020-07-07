@@ -5,10 +5,12 @@ body {
   font-family: 'Raleway', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.9;
   font-display: swap;
+  background-color: var(--white);
+  min-height: 100vh;
 }
 
 main {
-  background-color: var(--white);
+  min-height: 100vh;
 }
 
 h1,h2,h3,h4,h5,h6 {
