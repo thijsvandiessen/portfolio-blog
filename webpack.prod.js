@@ -5,6 +5,32 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const SitemapPlugin = require('sitemap-webpack-plugin').default;
+
+// TODO: generate these paths for my sitemap
+const paths = [
+  {
+    path: '',
+    changefreq: 'yearly'
+  },
+  {
+    path: '/projects',
+    changefreq: 'yearly'
+  },
+  {
+    path: '/my-writings',
+    changefreq: 'yearly'
+  },
+  {
+    path: '/about',
+    changefreq: 'yearly'
+  },
+  {
+    path: '/contact',
+    changefreq: 'yearly'
+  }
+];
+
 // Workbox - plugin to create a simple service worker
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
@@ -64,7 +90,10 @@ module.exports = merge(common, {
     new WorkboxPlugin.GenerateSW({
       // Exclude images from the precache
       exclude: [/\.(?:png|jpg|jpeg|svg|webp)$/]
-    })
+    }),
+
+    // generate a sitemap
+    new SitemapPlugin('https://vandiessen.com', paths),
   ],
 
 });

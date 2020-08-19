@@ -45,7 +45,7 @@ class Blog {
       )
       // todo: return better error state
           .catch((error) => {
-            console.error('blogCDN error');
+            console.error('blogCDN error: ' + error );
           });
     }
   }

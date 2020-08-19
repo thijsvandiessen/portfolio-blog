@@ -65,8 +65,10 @@ class ArticlePage extends Component {
         <main><GradientHeader heading={heading} /></main>
       );
     } else if (this.state.article !== null) {
+
       return (
         <main>
+          <GradientHeader heading={{ title: this.state.article.split('\n')[0].replace(/\#\s/g,'')}} />
           <article className="content-container"><ReactMarkdown source={this.state.article} /></article>
         </main>
       );
