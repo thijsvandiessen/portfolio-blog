@@ -405,7 +405,7 @@ webpSupportCheck(callback) {
             {images && (
               <div className="gallery">
                 <a
-                  href="/assets/IMG_1790.jpg"
+                  href="/IMG_1790.jpg"
                   title="Open this image of Rydal Cave, Lake District"
                 >
                   <img
@@ -419,7 +419,7 @@ webpSupportCheck(callback) {
                   />
                 </a>
                 <a
-                  href="/assets/IMG_2543.jpg"
+                  href="/IMG_2543.jpg"
                   title="Open this image of Buttermere and Crummock Water, Lake District"
                 >
                   <img
@@ -433,7 +433,7 @@ webpSupportCheck(callback) {
                   />
                 </a>
                 <a
-                  href="/assets/IMG_4442.jpg"
+                  href="/IMG_4442.jpg"
                   title="Open this image of the Antelope Canyon"
                 >
                   <img
@@ -447,7 +447,7 @@ webpSupportCheck(callback) {
                   />
                 </a>
                 <a
-                  href="/assets/IMG_4468.jpg"
+                  href="/IMG_4468.jpg"
                   title="Open image Sunrise at Zion, a detail from the Patriarchs."
                 >
                   <img
@@ -461,7 +461,7 @@ webpSupportCheck(callback) {
                   />
                 </a>
                 <a
-                  href="/assets/IMG_5358.jpg"
+                  href="/IMG_5358.jpg"
                   title="Open this image of a Mule Deer at Bryce National Park"
                 >
                   <img
@@ -475,7 +475,7 @@ webpSupportCheck(callback) {
                   />
                 </a>
                 <a
-                  href="/assets/IMG_5921.jpg"
+                  href="/IMG_5921.jpg"
                   title="Open this image of me, casually looking into the Grand Canyon"
                 >
                   <img
