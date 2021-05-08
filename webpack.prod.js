@@ -78,7 +78,7 @@ module.exports = merge(common, {
     // generate a service worker
     new WorkboxPlugin.GenerateSW({
       // Exclude images from the precache
-      exclude: [/\.(?:png|jpg|jpeg|svg|webp)$/]
+      exclude: [/\.(?:png|jpg|jpeg|svg|webp|htaccess)$/]
     }),
 
     // generate a sitemap
