@@ -41,10 +41,10 @@ module.exports = {
       filename: 'index.html',
       favicon: './src/favicon.ico',
       // inject: false,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
+      // minify: {
+      //   removeComments: true,
+      //   collapseWhitespace: true
+      // },
     }),
 
     new webpack.HotModuleReplacementPlugin(),
@@ -64,50 +64,49 @@ module.exports = {
     // A static asset folder
     new CopyPlugin({
       patterns: [
-        { 
-          from: 'static/**',
+        // { from: "static/**" },
+        {
+          from: 'public/',
+          to: "./",
+          // context: "dist",
           toType: 'dir',
-          flatten: true,
         },
       ],
-      options: {
-        concurrency: 100,
-      },
     }),
   ],
 
   module: {
     rules: [{
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["@babel/plugin-syntax-dynamic-import"],
-          }
+      test: /\.js$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ["@babel/preset-env", "@babel/preset-react"],
+          plugins: ["@babel/plugin-syntax-dynamic-import"],
         }
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              // outputPath: 'assets',
-            },
+      }
+    },
+    {
+      test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+      exclude: /(node_modules)/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            // outputPath: 'assets',
           },
-        ],
-      },
+        },
+      ],
+    },
     ]
   },
 
   output: {
-    filename : '[name].[hash:8].js',
-    path : path.resolve(__dirname, 'dist'),
-    chunkFilename: '[name].[hash:8].js',
+    filename: '[name].[fullhash].js',
+    path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[name].[fullhash].js',
 
     // relative to HTML page
     publicPath: '/'

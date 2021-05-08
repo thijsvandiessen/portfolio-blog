@@ -1,53 +1,40 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
-class ContactForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      message: '',
-      isValidated: false,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+export default function Contactform() {
+  const [state, handleSubmit] = useForm("mrgrewjp");
+  if (state.succeeded) {
+    return <p>Thanks for joining!</p>;
   }
-
-  handleChange(event) {
-    const change = {};
-    change[event.target.name] = event.target.value;
-    this.setState(change);
-  }
-
-  handleSubmit(event) {
-    // todo
-  }
-
-
-  render() {
-    return (<form action="https://formspree.io/info@vandiessen.com" method="POST" id="contactForm" onSubmit={this.handleSubmit}>
-      <label htmlFor="email">Your email address:</label>
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="email">
+        Email Address
+        </label>
       <input
-        type="email"
         id="email"
+        type="email"
         name="email"
-        value={this.state.email}
-        onChange={this.handleChange.bind(this)}
-        required="required"
-        placeholder="I would like to contact you too" />
+      />
+      <ValidationError
+        prefix="Email"
+        field="email"
+        errors={state.errors}
+      />
       <label htmlFor="message">Message:</label>
+
       <textarea
         id="message"
         name="message"
-        value={this.state.message}
-        onChange={this.handleChange.bind(this)}
-        placeholder="Your message">
-      </textarea>
-      <input type="hidden" name="isValidated" value="false" />
-      <input type="submit" value="Submit" className="button" />
+      />
+      <ValidationError
+        prefix="Message"
+        field="message"
+        errors={state.errors}
+      />
+      <button type="submit" disabled={state.submitting} className="button">
+        Submit
+        </button>
     </form>
-    );
-  }
+  );
 }
-
-export default ContactForm;

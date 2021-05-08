@@ -13,14 +13,6 @@ class Projects extends Component {
     return (
       <section className="content-container projects">
         <div>
-          <h2>This portfolio</h2>
-          <p>I started to play with React and Webpack and then this happend.
-            I first wanted to create a simple headless blog with articles written in Markdown. So I did.</p>
-          <Link to="my-writings" tite="Read my articles written in Markdown">
-            Read more...
-          </Link>
-        </div>
-        <div>
           <h2>Making a oscillator</h2>
           <p>A simple oscillator that I use to tune my violin or double bass.
           In most orchestras 442 hertz is the A, normaly this is 440 hertz. This simply because the woodwinds like it this way. And we like it if the woodwinds are in tune.</p>

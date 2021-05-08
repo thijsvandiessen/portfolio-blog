@@ -24,13 +24,6 @@ module.exports = merge(common, {
           // style loder can only be used in development
           'style-loader',
           'css-loader',
-          {
-            // css autoprefix
-            loader: 'postcss-loader',
-              options: {
-                plugins: () => [require('autoprefixer')]
-              },
-          },
           'sass-loader'
         ]
       },

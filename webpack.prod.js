@@ -1,8 +1,8 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
@@ -15,10 +15,6 @@ const paths = [
   },
   {
     path: '/projects',
-    changefreq: 'yearly'
-  },
-  {
-    path: '/my-writings',
     changefreq: 'yearly'
   },
   {
@@ -50,13 +46,6 @@ module.exports = merge(common, {
             }
           },
           'css-loader',
-          {
-            // autoprefix
-            loader: 'postcss-loader',
-              options: {
-                plugins: () => [require('autoprefixer')]
-              },
-          },
           'sass-loader'
         ]
       },
@@ -68,23 +57,23 @@ module.exports = merge(common, {
     usedExports: true,
     minimizer: [
       // minify js
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: {
-            comments: false
-          }
-        }
-      }),
+      // new UglifyJsPlugin({
+      //   uglifyOptions: {
+      //     output: {
+      //       comments: false
+      //     }
+      //   }
+      // }),
       // minify css
-      new OptimizeCSSAssetsPlugin()
+      // new OptimizeCSSAssetsPlugin()
     ],
   },
 
   plugins: [
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({ analyzerMode: "json" }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash:8].css',
-      chunkFilename: "[id].[hash:8].css"
+      filename: '[name].[fullhash].css',
+      chunkFilename: "[id].[fullhash].css"
     }),
     // generate a service worker
     new WorkboxPlugin.GenerateSW({
@@ -93,7 +82,7 @@ module.exports = merge(common, {
     }),
 
     // generate a sitemap
-    new SitemapPlugin('https://vandiessen.com', paths),
+    new SitemapPlugin({ base: 'https://vandiessen.com', paths }),
   ],
 
 });

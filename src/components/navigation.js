@@ -40,11 +40,6 @@ class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={this.handleClick} activeClassName="selected" to="/my-writings">
-              My writings
-            </NavLink>
-          </li>
-          <li>
             <NavLink onClick={this.handleClick} activeClassName="selected" to="/about">
               About me
             </NavLink>

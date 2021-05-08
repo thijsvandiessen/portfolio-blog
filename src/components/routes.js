@@ -14,8 +14,6 @@ const ProjectCalculator = lazy(() => import(
     /* webpackChunkName: 'projectCalculator' */ "./projectCalculator"));
 const ProjectImageOptimizations = lazy(() => import(
   /* webpackChunkName: 'ProjectImgOpt' */ "./projectImageOptimizations"));
-const Blog = lazy(() => import(
-  /* webpackChunkName: 'blog' */ "./blogPage"));
 const Article = lazy(() => import(
   /* webpackChunkName: 'article' */ "./articlePage"));
 const About = lazy(() => import(
@@ -62,15 +60,6 @@ class Routes extends Component {
           path="/projects/my-react-calculator"
           exact
           component={LazyLoad(ProjectCalculator)}
-        />
-        <Route
-          path="/my-writings"
-          exact
-          component={LazyLoad(Blog)}
-        />
-        <Route
-          path="/my-writings/:article"
-          component={LazyLoad(Article)}
         />
         <Route
           path="/about"
