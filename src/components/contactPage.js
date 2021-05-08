@@ -13,7 +13,6 @@ class ContactPage extends Component {
       <main>
         <GradientHeader heading={heading} />
         <section className="content-container">
-          <h2>Send me an email and I will get back to you.</h2>
           <ContactForm />
         </section>
       </main>
