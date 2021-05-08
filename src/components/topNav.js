@@ -12,7 +12,7 @@ class TopNav extends Component {
         <picture className="logo">
           <source srcSet={`${logoWebp}, ${logoWebp2x} 2x`} type="image/webp" />
           <source srcSet={`${logo}, ${logo2x} 2x`} />
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" width={100} height={100} />
         </picture>
       </div>
     );

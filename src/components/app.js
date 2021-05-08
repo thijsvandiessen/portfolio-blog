@@ -13,9 +13,6 @@ const Navigation = React.lazy(() => import(
 const Routes = React.lazy(() => import(
   /* webpackChunkName: 'routes' */ "./routes"));
 
-const Footer = React.lazy(() => import(
-  /* webpackChunkName: 'footer' */ "./footer"));
-
 class App extends Component {
   componentDidMount() {
     // lazyload images
@@ -34,9 +31,6 @@ class App extends Component {
           </Suspense>
           <Suspense fallback={<main />}>
             <Routes />
-          </Suspense>
-          <Suspense fallback={<footer />}>
-            <Footer />
           </Suspense>
         </ScrollToTop>
       </BrowserRouter>

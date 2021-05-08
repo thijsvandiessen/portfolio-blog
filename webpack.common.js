@@ -41,10 +41,17 @@ module.exports = {
       filename: 'index.html',
       favicon: './src/favicon.ico',
       // inject: false,
-      // minify: {
-      //   removeComments: true,
-      //   collapseWhitespace: true
-      // },
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      as(entry) {
+        if (/\.css$/.test(entry)) return 'style';
+        return 'script';
+      }
     }),
 
     new webpack.HotModuleReplacementPlugin(),
