@@ -34,7 +34,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.23.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "jest": "^26.6.3",
