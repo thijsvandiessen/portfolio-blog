@@ -5,7 +5,7 @@ module.exports = merge(common, {
   mode: 'development',
 
   devServer: {
-    contentBase: './dist',
+    static: './dist',
 
     // let the browser know where we left of on reload
     historyApiFallback: true,

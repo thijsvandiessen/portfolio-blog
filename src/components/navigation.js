@@ -29,23 +29,23 @@ class Navigation extends Component {
         <ul data-nav-list={(this.state.isToggleOn ? 'visible' : 'hidden')}>
           <li>
             <h2>
-              <NavLink onClick={this.handleClick} activeClassName="selected" to="/">
+              <NavLink onClick={this.handleClick} className="selected" to="/">
                 My portfolio
               </NavLink>
             </h2>
           </li>
           <li>
-            <NavLink onClick={this.handleClick} activeClassName="selected" to="/projects">
+            <NavLink onClick={this.handleClick} className="selected" to="/projects">
               My projects
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={this.handleClick} activeClassName="selected" to="/about">
+            <NavLink onClick={this.handleClick} className="selected" to="/about">
               About me
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={this.handleClick} activeClassName="selected" to="/contact">
+            <NavLink onClick={this.handleClick} className="selected" to="/contact">
               Contact me
             </NavLink>
           </li>

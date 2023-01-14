@@ -1,5 +1,5 @@
 import React, { lazy, Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import LazyLoad from './lazyLoad';
 
 const Home = lazy(() => import(
@@ -23,10 +23,10 @@ const Contact = lazy(() => import(
 const NoMatch = lazy(() => import(
   /* webpackChunkName: 'noMatch' */ "./noMatch"));
 
-class Routes extends Component {
+class RootRoutes extends Component {
   render() {
     return (
-      <Switch>
+      <Routes>
         <Route
           path="/"
           exact
@@ -46,10 +46,6 @@ class Routes extends Component {
           path="/projects/my-to-do-app"
           exact
           component={LazyLoad(ProjectTodo)}
-        />
-        <Redirect
-          from="/projects/image-optimizations"
-          to="/projects/lazy-loading-images-to-make-your-site-fast"
         />
         <Route
           path="/projects/lazy-loading-images-to-make-your-site-fast"
@@ -73,9 +69,9 @@ class Routes extends Component {
         />
         <Route component={LazyLoad(NoMatch)}
         />
-      </Switch>
+      </Routes>
     );
   }
 }
 
-export default Routes;
+export default RootRoutes;
